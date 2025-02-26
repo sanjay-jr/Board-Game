@@ -7,9 +7,7 @@ let currentPlayer = 1;
 const diceResultElement = document.getElementById('diceResult');
 const turnElement = document.getElementById('turn');
 const boardElement = document.getElementById('board');
-const achievementsElement = document.createElement('div');
-achievementsElement.classList.add('achievements');
-document.body.appendChild(achievementsElement);
+const achievementsElement = document.getElementById('achievements');
 
 // Audio elements
 const backgroundMusic = document.getElementById('backgroundMusic');
@@ -34,7 +32,7 @@ backgroundMusic.play();
 
 // Create the board
 function createBoard() {
-  boardElement.innerHTML = "";
+  boardElement.innerHTML = ""; // Prevent board duplication
   let rowCount = 0;
   for (let i = 0; i < boardSize; i++) {
     if (i % cellsPerRow === 0) {

@@ -3,18 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Board Game</title>
+  <title>🌈 The Rainbow Garden Game 🌈</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="game-container">
-    <h1>Linear Path Board Game</h1>
+    <h1>🌈 The Rainbow Garden Adventure 🌈</h1>
+    <p class="game-intro">Embark on a magical journey through the garden! Roll the dice, move forward, and be the first to reach the finish line! 🚀</p>
     <div class="board" id="board"></div>
     <div class="controls">
-      <button id="rollDice">Roll Dice</button>
-      <p id="diceResult"></p>
-      <p id="turn"></p>
+      <button id="startGame">🌟 Start Game</button>
+      <button id="rollDice">🎲 Roll Dice</button>
+      <button id="resetGame">🔄 Reset</button>
+      <p id="diceResult" class="dice-result"></p>
+      <p id="turn" class="turn-indicator"></p>
     </div>
+    <div class="achievements" id="achievements"></div>
   </div>
 
   <audio id="backgroundMusic" loop>
@@ -29,12 +36,6 @@
     <source src="win-sound.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
-
-
-
-
-
-
 
   <script src="script.js"></script>
 </body>

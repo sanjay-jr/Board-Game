@@ -60,6 +60,7 @@ function updatePlayers() {
   player1.classList.add('player');
   player1.textContent = '1';
   player1Cell.appendChild(player1);
+
   const player2Cell = document.getElementById(`cell-${player2Position}`);
   const player2 = document.createElement('div');
   player2.classList.add('player', 'player2');
@@ -67,21 +68,30 @@ function updatePlayers() {
   player2Cell.appendChild(player2);
 }
 
-// Roll the dice
+// Roll the dice with animation
 document.getElementById('rollDice').addEventListener('click', () => {
-  const dice = Math.floor(Math.random() * 6) + 1;
   diceResultElement.textContent = `Rolling...`;
+  diceResultElement.style.animation = 'shakeDice 0.5s ease-in-out'; // Apply dice shake animation
   diceRollSound.play();
+
   setTimeout(() => {
+    const dice = Math.floor(Math.random() * 6) + 1;
     diceResultElement.textContent = `You rolled a ${dice}`;
+    diceResultElement.style.animation = ''; // Reset animation after it ends
     if (currentPlayer === 1) {
       player1Position = Math.min(player1Position + dice, boardSize - 1);
-      if (player1Position === boardSize - 1) unlockAchievement("Player 1 Wins! 🎉");
+      if (player1Position === boardSize - 1) {
+        unlockAchievement("Player 1 Wins! 🎉");
+        winSound.play(); // Play win sound for Player 1
+      }
       currentPlayer = 2;
       turnElement.textContent = "Player 2's Turn";
     } else {
       player2Position = Math.min(player2Position + dice, boardSize - 1);
-      if (player2Position === boardSize - 1) unlockAchievement("Player 2 Wins! 🎉");
+      if (player2Position === boardSize - 1) {
+        unlockAchievement("Player 2 Wins! 🎉");
+        winSound.play(); // Play win sound for Player 2
+      }
       currentPlayer = 1;
       turnElement.textContent = "Player 1's Turn";
     }
@@ -108,3 +118,16 @@ document.getElementById('startGame').addEventListener('click', () => {
   resetGame();
   backgroundMusic.play();
 });
+
+// CSS for dice shake animation
+const style = document.createElement('style');
+style.innerHTML = `
+@keyframes shakeDice {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(30deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-30deg); }
+    100% { transform: rotate(0deg); }
+}
+`;
+document.head.appendChild(style);

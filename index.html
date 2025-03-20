@@ -1,10 +1,9 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🌈 The Rainbow Garden Game 🌈</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
@@ -24,18 +23,34 @@
     <div class="achievements" id="achievements"></div>
   </div>
 
-  <audio id="backgroundMusic" loop>
-    <source src="background-music.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-  <audio id="diceRollSound">
-    <source src="sound1.wav" type="audio/wav">
-    Your browser does not support the audio element.
-  </audio>
-  <audio id="winSound">
-    <source src="win-sound.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+  <div id="renameModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Rename Players</h2>
+      <label for="player1Name">Player 1 Name:</label>
+      <input type="text" id="player1Name" value="Player 1">
+      <label for="player2Name">Player 2 Name:</label>
+      <input type="text" id="player2Name" value="Player 2">
+      <button id="saveNames">Save Names</button>
+    </div>
+  </div>
+
+  <button id="howToPlayBtn" class="how-to-play-btn">❓ How to Play</button>
+
+  <div id="howToPlayModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>How to Play 🌈 The Rainbow Garden Adventure 🌈</h2>
+      <p>1. Click "🌟 Start Game" to initialize the board.</p>
+      <p>2. Click "🎲 Roll Dice" to move your player.</p>
+      <p>3. The first player to reach the end of the board wins!</p>
+      <p>4. Use "🔄 Reset" to start a new game.</p>
+      <p>5. Click the names on the top to rename players before the game starts!</p>
+      <p>6. Landing on a cell marked as a <span class="indicator shortcut-indicator"></span> "shortcut" will advance you further on the board.</p>
+      <p>7. Landing on a cell marked as a <span class="indicator trap-indicator"></span> "trap" will send you backwards on the board.</p>
+      <p>Have fun on your magical journey through the garden! 🚀</p>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

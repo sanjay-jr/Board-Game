@@ -10,9 +10,8 @@ const boardElement = document.getElementById('board');
 const achievementsElement = document.getElementById('achievements');
 
 // Audio elements
-// const backgroundMusic = document.getElementById('backgroundMusic');
-// const diceRollSound = document.getElementById('diceRollSound');
-// const winSound = document.getElementById('winSound');
+const diceRollSound = document.getElementById('diceRollSound');
+const winSound = document.getElementById('winSound');
 
 // Trophy system
 const achievements = [];
@@ -170,6 +169,9 @@ document.getElementById("rollDice").addEventListener("click", () => {
   diceResultElement.style.animation = "shakeDice 0.5s ease-in-out"; // Apply dice shake animation
   // diceRollSound.play();
 
+  const diceRollSound = new Audio('sound1.wav');
+  diceRollSound.play();
+
   setTimeout(() => {
     const dice = weightedDiceRoll();
     diceResultElement.textContent = `You rolled a ${dice}`;
@@ -217,7 +219,8 @@ function movePlayer(dice) {
     }
     if (player1Position === boardSize - 1) {
       unlockAchievement(`${player1Name} Wins! `);
-      // winSound.play(); // Play win sound for Player 1
+      const winSound = new Audio('win-sound.wav');
+      winSound.play();
       endGame();
     } else {
       currentPlayer = 2;
@@ -235,7 +238,8 @@ function movePlayer(dice) {
     }
     if (player2Position === boardSize - 1) {
       unlockAchievement(`${player2Name} Wins! `);
-      // winSound.play(); // Play win sound for Player 2
+      const winSound = new Audio('win-sound.wav');
+      winSound.play();
       endGame();
     } else {
       currentPlayer = 1;
@@ -274,7 +278,12 @@ document.getElementById('startGame').addEventListener('click', () => {
   window.shortcuts = newShortcuts;
   window.traps = newTraps;
   createBoard();
-  // backgroundMusic.play();
+  const backgroundMusic = document.createElement('audio');
+  backgroundMusic.src = 'rainbow-music.mp3';
+  backgroundMusic.loop = true;
+  backgroundMusic.volume = 0.5; // Adjust volume as needed
+  document.body.appendChild(backgroundMusic);
+  backgroundMusic.play();
 });
 
 // CSS for dice shake animation

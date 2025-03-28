@@ -10,7 +10,8 @@ const boardElement = document.getElementById('board');
 const achievementsElement = document.getElementById('achievements');
 
 // Audio elements
-const diceRollSound = document.getElementById('diceRollSound');
+const backgroundMusic = document.getElementById('backgroundMusic');
+const diceRollSound = new Audio('sound1.wav');
 const winSound = document.getElementById('winSound');
 
 // Trophy system
@@ -64,16 +65,57 @@ saveNamesButton.addEventListener("click", () => {
     renameModal.style.display = "none";
 });
 
-// Initial display of the rename modal
-renameModal.style.display = "block";
+// Character Selection Modals
+const characterModal1 = document.getElementById("characterModal1");
+const characterModal2 = document.getElementById("characterModal2");
+let player1Character = null;
+let player2Character = null;
 
-// Close the modal if the user clicks outside of it
-window.addEventListener("click", (event) => {
-    if (event.target == renameModal) {
-        renameModal.style.display = "none";
+// Open character selection modals
+function openCharacterModals() {
+    characterModal1.style.display = "block";
+}
+
+// Event listeners for character selection
+const characterImages1 = document.querySelectorAll("#characterModal1 .character-selection img");
+const characterImages2 = document.querySelectorAll("#characterModal2 .character-selection img");
+
+characterImages1.forEach(img => {
+    img.addEventListener("click", () => {
+        // Remove 'selected' class from all images
+        characterImages1.forEach(i => i.classList.remove("selected"));
+        // Add 'selected' class to the clicked image
+        img.classList.add("selected");
+        player1Character = img.src;
+    });
+});
+
+characterImages2.forEach(img => {
+    img.addEventListener("click", () => {
+        // Remove 'selected' class from all images
+        characterImages2.forEach(i => i.classList.remove("selected"));
+        // Add 'selected' class to the clicked image
+        img.classList.add("selected");
+        player2Character = img.src;
+    });
+});
+
+// Event listeners for select character buttons
+document.getElementById("selectCharacter1").addEventListener("click", () => {
+    if (player1Character) {
+        characterModal1.style.display = "none";
+        characterModal2.style.display = "block";
+    } else {
+        alert("Please select a character for Player 1.");
     }
-    if (event.target == howToPlayModal) {
-        howToPlayModal.style.display = "none";
+});
+
+document.getElementById("selectCharacter2").addEventListener("click", () => {
+    if (player2Character) {
+        characterModal2.style.display = "none";
+        startGame(); // Start the game after both players have chosen
+    } else {
+        alert("Please select a character for Player 2.");
     }
 });
 
@@ -145,31 +187,31 @@ function resetAnswer() {
 
 // Update player positions
 function updatePlayers() {
-  document.querySelectorAll(".player").forEach((player) => player.remove());
-  const player1Cell = document.getElementById(`cell-${player1Position}`);
-  if (player1Cell) {
-    const player1 = document.createElement("div");
-    player1.classList.add("player");
-    player1.textContent = "1";
-    player1Cell.appendChild(player1);
-  }
+    document.querySelectorAll(".player").forEach((player) => player.remove());
 
-  const player2Cell = document.getElementById(`cell-${player2Position}`);
-  if (player2Cell) {
-    const player2 = document.createElement("div");
-    player2.classList.add("player", "player2");
-    player2.textContent = "2";
-    player2Cell.appendChild(player2);
-  }
+    const player1Cell = document.getElementById(`cell-${player1Position}`);
+    if (player1Cell) {
+        const player1 = document.createElement("div");
+        player1.classList.add("player");
+        // Use character image if selected, otherwise use default text
+        player1.innerHTML = player1Character ? `<img src="${player1Character}" alt="Player 1">` : "1";
+        player1Cell.appendChild(player1);
+    }
+
+    const player2Cell = document.getElementById(`cell-${player2Position}`);
+    if (player2Cell) {
+        const player2 = document.createElement("div");
+        player2.classList.add("player", "player2");
+        // Use character image if selected, otherwise use default text
+        player2.innerHTML = player2Character ? `<img src="${player2Character}" alt="Player 2">` : "2";
+        player2Cell.appendChild(player2);
+    }
 }
 
 // Roll the dice with animation
 document.getElementById("rollDice").addEventListener("click", () => {
   diceResultElement.textContent = `Rolling...`;
   diceResultElement.style.animation = "shakeDice 0.5s ease-in-out"; // Apply dice shake animation
-  // diceRollSound.play();
-
-  const diceRollSound = new Audio('sound1.wav');
   diceRollSound.play();
 
   setTimeout(() => {
@@ -219,8 +261,7 @@ function movePlayer(dice) {
     }
     if (player1Position === boardSize - 1) {
       unlockAchievement(`${player1Name} Wins! `);
-      const winSound = new Audio('win-sound.wav');
-      winSound.play();
+      winSound.play(); // Play win sound for Player 1
       endGame();
     } else {
       currentPlayer = 2;
@@ -238,8 +279,7 @@ function movePlayer(dice) {
     }
     if (player2Position === boardSize - 1) {
       unlockAchievement(`${player2Name} Wins! `);
-      const winSound = new Audio('win-sound.wav');
-      winSound.play();
+      winSound.play(); // Play win sound for Player 2
       endGame();
     } else {
       currentPlayer = 1;
@@ -270,20 +310,39 @@ function resetGame() {
   document.getElementById('rollDice').style.opacity = 1;
 }
 
-// Initialize game
+// Initialize game - Modified to include Character Selection
 document.getElementById('startGame').addEventListener('click', () => {
-  createBoard();
-  resetGame();
-  const { shortcuts: newShortcuts, traps: newTraps } = generateRandomPositions(boardSize);
-  window.shortcuts = newShortcuts;
-  window.traps = newTraps;
-  createBoard();
-  const backgroundMusic = document.createElement('audio');
-  backgroundMusic.src = 'rainbow-music.mp3';
-  backgroundMusic.loop = true;
-  backgroundMusic.volume = 0.5; // Adjust volume as needed
-  document.body.appendChild(backgroundMusic);
-  backgroundMusic.play();
+    renameModal.style.display = "none";
+    openCharacterModals();
+});
+
+function startGame() {
+    createBoard();
+    resetGame();
+    const { shortcuts: newShortcuts, traps: newTraps } = generateRandomPositions(boardSize);
+    window.shortcuts = newShortcuts;
+    window.traps = newTraps;
+    createBoard();
+    backgroundMusic.play();
+}
+
+// Initial display of the rename modal
+renameModal.style.display = "block";
+
+// Close the modal if the user clicks outside of it
+window.addEventListener("click", (event) => {
+    if (event.target == renameModal) {
+        renameModal.style.display = "none";
+    }
+    if (event.target == howToPlayModal) {
+        howToPlayModal.style.display = "none";
+    }
+    if (event.target == characterModal1) {
+        characterModal1.style.display = "none";
+    }
+    if (event.target == characterModal2) {
+        characterModal2.style.display = "none";
+    }
 });
 
 // CSS for dice shake animation
@@ -295,6 +354,11 @@ style.innerHTML = `
     50% { transform: rotate(0deg); }
     75% { transform: rotate(-30deg); }
     100% { transform: rotate(0deg); }
+}
+.player img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
 }
 `;
 document.head.appendChild(style);

@@ -3,7 +3,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🌈 The Rainbow Garden Game 🌈</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
@@ -23,6 +23,8 @@
     <div class="achievements" id="achievements"></div>
   </div>
 
+  <audio id="backgroundMusic" src="rainbow-music.mp3" loop autoplay></audio>
+
   <div id="renameModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -33,6 +35,43 @@
       <input type="text" id="player2Name" value="Player 2">
       <button id="saveNames">Save Names</button>
     </div>
+  </div>
+
+  <!-- Character Selection Modals -->
+  <div id="characterModal1" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Player 1 - Choose Your Character</h2>
+          <div class="character-selection">
+              <img src="Apple.png" alt="Character 1" data-character="1">
+              <img src="Bug.png" alt="Character 2" data-character="2">
+              <img src="Grape.png" alt="Character 3" data-character="3">
+              <img src="Green.png" alt="Character 4" data-character="4">
+              <img src="Green2.png" alt="Character 5" data-character="5">
+              <img src="Lemon.png" alt="Character 6" data-character="6">
+              <img src="Mushroom.png" alt="Character 7" data-character="7">
+              <img src="Tomato.png" alt="Character 8" data-character="8">
+          </div>
+          <button id="selectCharacter1">Select Character</button>
+      </div>
+  </div>
+
+  <div id="characterModal2" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Player 2 - Choose Your Character</h2>
+          <div class="character-selection">
+              <img src="Apple.png" alt="Character 1" data-character="1">
+              <img src="Bug.png" alt="Character 2" data-character="2">
+              <img src="Grape.png" alt="Character 3" data-character="3">
+              <img src="Green.png" alt="Character 4" data-character="4">
+              <img src="Green2.png" alt="Character 5" data-character="5">
+              <img src="Lemon.png" alt="Character 6" data-character="6">
+              <img src="Mushroom.png" alt="Character 7" data-character="7">
+              <img src="Tomato.png" alt="Character 8" data-character="8">
+          </div>
+          <button id="selectCharacter2">Select Character</button>
+      </div>
   </div>
 
   <button id="howToPlayBtn" class="how-to-play-btn">❓ How to Play</button>

@@ -10,7 +10,7 @@ const boardElement = document.getElementById('board');
 const achievementsElement = document.getElementById('achievements');
 
 // Audio elements
-const backgroundMusic = document.getElementById('backgroundMusic');
+const backgroundMusic = document.getElementById('backgroundMusic')
 const diceRollSound = new Audio('sound1.wav');
 const winSound = document.getElementById('winSound');
 
@@ -63,6 +63,19 @@ saveNamesButton.addEventListener("click", () => {
     player2Name = player2NameInput.value || "Player 2";
     turnElement.textContent = `${player1Name}'s Turn`;
     renameModal.style.display = "none";
+});
+
+// Initial display of the rename modal
+renameModal.style.display = "block";
+
+// Close the modal if the user clicks outside of it
+window.addEventListener("click", (event) => {
+    if (event.target == renameModal) {
+        renameModal.style.display = "none";
+    }
+    if (event.target == howToPlayModal) {
+        howToPlayModal.style.display = "none";
+    }
 });
 
 // Character Selection Modals
@@ -178,34 +191,27 @@ function generateRandomPositions(boardSize, maxShortcutLength = 10) {
     return { shortcuts, traps };
 }
 
-function resetAnswer() {
-  let selectedAnswer = null;
-  document
-    .querySelectorAll(".selected-answer")
-    .forEach((el) => el.classList.remove("selected-answer"));
-}
-
 // Update player positions
 function updatePlayers() {
-    document.querySelectorAll(".player").forEach((player) => player.remove());
+  document.querySelectorAll(".player").forEach((player) => player.remove());
 
-    const player1Cell = document.getElementById(`cell-${player1Position}`);
-    if (player1Cell) {
-        const player1 = document.createElement("div");
-        player1.classList.add("player");
-        // Use character image if selected, otherwise use default text
-        player1.innerHTML = player1Character ? `<img src="${player1Character}" alt="Player 1">` : "1";
-        player1Cell.appendChild(player1);
-    }
+  const player1Cell = document.getElementById(`cell-${player1Position}`);
+  if (player1Cell) {
+      const player1 = document.createElement("div");
+      player1.classList.add("player");
+      // Use character image if selected, otherwise use default text
+      player1.innerHTML = player1Character ? `<img src="${player1Character}" alt="Player 1">` : "1";
+      player1Cell.appendChild(player1);
+  }
 
-    const player2Cell = document.getElementById(`cell-${player2Position}`);
-    if (player2Cell) {
-        const player2 = document.createElement("div");
-        player2.classList.add("player", "player2");
-        // Use character image if selected, otherwise use default text
-        player2.innerHTML = player2Character ? `<img src="${player2Character}" alt="Player 2">` : "2";
-        player2Cell.appendChild(player2);
-    }
+  const player2Cell = document.getElementById(`cell-${player2Position}`);
+  if (player2Cell) {
+      const player2 = document.createElement("div");
+      player2.classList.add("player", "player2");
+      // Use character image if selected, otherwise use default text
+      player2.innerHTML = player2Character ? `<img src="${player2Character}" alt="Player 2">` : "2";
+      player2Cell.appendChild(player2);
+  }
 }
 
 // Roll the dice with animation
@@ -261,7 +267,8 @@ function movePlayer(dice) {
     }
     if (player1Position === boardSize - 1) {
       unlockAchievement(`${player1Name} Wins! `);
-      winSound.play(); // Play win sound for Player 1
+      const winSound = new Audio('win-sound.wav');
+      winSound.play();
       endGame();
     } else {
       currentPlayer = 2;
@@ -279,7 +286,8 @@ function movePlayer(dice) {
     }
     if (player2Position === boardSize - 1) {
       unlockAchievement(`${player2Name} Wins! `);
-      winSound.play(); // Play win sound for Player 2
+      const winSound = new Audio('win-sound.wav');
+      winSound.play();
       endGame();
     } else {
       currentPlayer = 1;
@@ -312,18 +320,18 @@ function resetGame() {
 
 // Initialize game - Modified to include Character Selection
 document.getElementById('startGame').addEventListener('click', () => {
-    renameModal.style.display = "none";
-    openCharacterModals();
+  renameModal.style.display = "none";
+  openCharacterModals();
 });
 
 function startGame() {
-    createBoard();
-    resetGame();
-    const { shortcuts: newShortcuts, traps: newTraps } = generateRandomPositions(boardSize);
-    window.shortcuts = newShortcuts;
-    window.traps = newTraps;
-    createBoard();
-    backgroundMusic.play();
+  createBoard();
+  resetGame();
+  const { shortcuts: newShortcuts, traps: newTraps } = generateRandomPositions(boardSize);
+  window.shortcuts = newShortcuts;
+  window.traps = newTraps;
+  createBoard();
+  backgroundMusic.play();
 }
 
 // Initial display of the rename modal
@@ -354,11 +362,6 @@ style.innerHTML = `
     50% { transform: rotate(0deg); }
     75% { transform: rotate(-30deg); }
     100% { transform: rotate(0deg); }
-}
-.player img {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
 }
 `;
 document.head.appendChild(style);

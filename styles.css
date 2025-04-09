@@ -2,21 +2,22 @@
 
 body {
     font-family: 'Quicksand', sans-serif;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb);
+    background: url('rainbow.jpg') no-repeat center center fixed;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 120vh;
     margin: 0;
 }
 
 .game-container {
-    text-align: center;
+    text-align: center ; 
     background: white;
-    padding: 30px;
+    padding: 40px;
     border-radius: 25px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-    max-width: 700px;
+    max-width: 1150px;
     transition: all 0.3s ease;
 }
 
@@ -48,12 +49,13 @@ h1 {
     background: #f0f8ff;
     border: 4px solid #444;
     border-radius: 15px;
-    width: 640px;
+    width: 1100px;
 }
 
 .row {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .row.reverse {
@@ -61,8 +63,8 @@ h1 {
 }
 
 .cell {
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
     background: linear-gradient(135deg, #ffdde1, #ee9ca7);
     display: flex;
     justify-content: center;
@@ -70,7 +72,7 @@ h1 {
     border: 3px solid #555;
     border-radius: 15px;
     margin: 5px;
-    font-size: 20px;
+    font-size: 28px;
     font-weight: bold;
     color: #222;
     transition: transform 0.2s ease-in-out, box-shadow 0.3s ease;
@@ -89,8 +91,15 @@ h1 {
 }
 
 .cell.trap {
-    background: linear-gradient(135deg, #f093fb, #f5576c);
-    color: white;
+    background: linear-gradient(135deg, #ffd285, #ffe135);
+    color: black;
+    font-weight: bold;
+    border: 2px dotted #888;
+}
+
+.cell.orange-trap {
+    background: orange;
+    color: black;
     font-weight: bold;
     border: 2px dotted #888;
 }
@@ -157,6 +166,59 @@ button:disabled {
     color: #333;
     margin-top: 20px;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Player Score Styles */
+.player-scores {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.player-score {
+    background: #e9ecef;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    width: 40%;
+}
+
+.player-score h3 {
+    color: #495057;
+    margin-bottom: 5px;
+    font-size: 1.4em;
+}
+
+.player-score p {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #343a40;
+}
+
+/* Player Score Styles - Inline */
+.player-scores-inline {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.player-score-inline {
+    text-align: center;
+    width: 40%;
+}
+
+.player-score-inline h3 {
+    color: #495057;
+    margin-bottom: 2px;
+    font-size: 1.2em;
+}
+
+.player-score-inline p {
+    font-size: 1em;
+    font-weight: bold;
+    color: #343a40;
 }
 
 /* Modal Styles */
@@ -226,20 +288,54 @@ button:disabled {
 }
 
 /* Trivia Modal Specific Styles */
-#triviaModal label, #triviaModal input {
-    display: none;
+#triviaModal {
+  z-index: 2;
 }
 
-#triviaModal input {
-    display: none;
+#triviaModal h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
 }
 
-#triviaModal button {
-    display: none;
+.trivia-answers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-button.selected-answer {
-    display: none;
+.answer-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.answer-button:hover {
+  background: linear-gradient(135deg, #4c6698, #633a82);
+}
+
+.answer-button.correct {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A); /* Green shades for correct answer */
+    color: white;
+}
+
+.answer-button.incorrect {
+    background: linear-gradient(135deg, #F44336, #E57373); /* Red shades for incorrect answer */
+    color: white;
+}
+
+#triviaResult {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #333;
 }
 
 /* How to Play Button */
@@ -283,7 +379,15 @@ button.selected-answer {
 }
 
 .trap-indicator {
-    background: linear-gradient(135deg, #f093fb, #f5576c);
+    background: #ffe135;
+    border: 2px dotted #888;
+    width: 24px;            
+    height: 24px;           
+    line-height: 24px;      
+}
+
+.orange-trap-indicator {
+    background: orange;
     border: 2px dotted #888;
     width: 24px;            
     height: 24px;           

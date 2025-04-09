@@ -67,8 +67,6 @@ saveNamesButton.addEventListener("click", () => {
     updatePlayerNameDisplay();
 });
 
-// Initial display of the rename modal
-renameModal.style.display = "block";
 
 // Close the modal if the user clicks outside of it
 window.addEventListener("click", (event) => {
@@ -456,11 +454,21 @@ function resetGame() {
   updateScoreDisplay();
 }
 
-// Initialize game - Modified to include Character Selection
+
+// Initialize game - Modified to show rename first
 document.getElementById('startGame').addEventListener('click', () => {
-  renameModal.style.display = "none";
-  openCharacterModals();
+  renameModal.style.display = "block"; // Show rename modal first
 });
+
+// When player names are saved, continue to character selection
+saveNamesButton.addEventListener("click", () => {
+    player1Name = player1NameInput.value || "Player 1";
+    player2Name = player2NameInput.value || "Player 2";
+    turnElement.textContent = `${player1Name}'s Turn`;
+    renameModal.style.display = "none";
+    openCharacterModals(); // Move to character selection after names
+});
+
 
 function startGame() {
   createBoard();

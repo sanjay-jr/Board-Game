@@ -63,6 +63,8 @@ saveNamesButton.addEventListener("click", () => {
     player2Name = player2NameInput.value || "Player 2";
     turnElement.textContent = `${player1Name}'s Turn`;
     renameModal.style.display = "none";
+    // Update player name displays in scores
+    updatePlayerNameDisplay();
 });
 
 // Initial display of the rename modal
@@ -83,6 +85,121 @@ const characterModal1 = document.getElementById("characterModal1");
 const characterModal2 = document.getElementById("characterModal2");
 let player1Character = null;
 let player2Character = null;
+
+// Trivia Modal Elements
+const triviaModal = document.getElementById("triviaModal");
+const triviaQuestion = document.getElementById("triviaQuestion");
+const answerButtons = document.querySelectorAll(".answer-button");
+const triviaResult = document.getElementById("triviaResult");
+let correctAnswer = null; // To store the correct answer
+
+// Score Variables
+let player1Score = 0;
+let player2Score = 0;
+
+// Function to display scores
+function updateScoreDisplay() {
+    document.getElementById('player1Score').textContent = `Score: ${player1Score}`;
+    document.getElementById('player2Score').textContent = `Score: ${player2Score}`;
+}
+
+// Function to update player name displays in scores
+function updatePlayerNameDisplay() {
+    document.getElementById('player1NameDisplay').textContent = player1Name;
+    document.getElementById('player2NameDisplay').textContent = player2Name;
+}
+
+// Trivia Questions (Array of Objects)
+const triviaQuestions = [
+    {
+        question: "Can your body remember some taste experiences?",
+        answers: ["Yes", "No"],
+        correctAnswer: "Yes"
+    },
+    {
+        question: "Do we always forget what food tastes like?",
+        answers: ["Yes", "No"],
+        correctAnswer: "No"
+    },
+    {
+        question: "Which of these is true?",
+        answers: ["Our body remembers some tastes", "Our body forgets all tastes"],
+        correctAnswer: "Our body remembers some tastes"
+    },
+    {
+        question: "Do frozen foods hold more or less nutrients than fresh foods?",
+        answers: ["More", "Less", "Both hold the same"],
+        correctAnswer: "Both hold the same"
+    },
+    {
+        question: "Are Fresh Foods more nutritious than frozen foods?",
+        answers: ["Yes", "No"],
+        correctAnswer: "No"
+    }
+];
+
+// Function to populate trivia modal with a random question
+function loadTriviaQuestion() {
+    const randomIndex = Math.floor(Math.random() * triviaQuestions.length);
+    const questionData = triviaQuestions[randomIndex];
+
+    triviaQuestion.textContent = questionData.question;
+    correctAnswer = questionData.correctAnswer;
+
+    answerButtons.forEach((button, index) => {
+        button.textContent = questionData.answers[index];
+        button.classList.remove('correct', 'incorrect'); // Remove previous feedback
+    });
+}
+
+// Function to handle answer selection
+answerButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const selectedAnswer = this.textContent;
+        const isCorrect = selectedAnswer === correctAnswer;
+
+        // Provide immediate feedback
+        if (isCorrect) {
+            this.classList.add('correct');
+            triviaResult.textContent = "Correct!";
+        } else {
+            this.classList.add('incorrect');
+            triviaResult.textContent = "Incorrect. Try again next turn!";
+        }
+
+        // Disable all buttons after an answer is selected
+        answerButtons.forEach(btn => btn.disabled = true);
+
+        // Proceed after a delay (e.g., 2 seconds)
+        setTimeout(() => {
+            answerButtons.forEach(btn => btn.disabled = false); // Re-enable buttons
+            triviaModal.style.display = "none";
+            triviaResult.textContent = ""; // Clear the result message
+            if (isCorrect) {
+              if (currentPlayer === 1) {
+                  player1Score += 50;
+              } else {
+                  player2Score += 50;
+              }
+              updateScoreDisplay();
+              movePlayer(diceRoll); // if correct move the player
+            }
+            answerButtons.forEach(btn => btn.classList.remove('correct', 'incorrect'));
+        }, 2000);
+    });
+});
+
+// Function to show trivia modal
+function showTriviaModal() {
+    loadTriviaQuestion();
+    triviaModal.style.display = "block";
+}
+
+// Close the Trivia modal
+const triviaCloseBtn = triviaModal.querySelector(".close");
+triviaCloseBtn.addEventListener("click", () => {
+    triviaModal.style.display = "none";
+});
 
 // Open character selection modals
 function openCharacterModals() {
@@ -132,6 +249,40 @@ document.getElementById("selectCharacter2").addEventListener("click", () => {
     }
 });
 
+// Function to generate random shortcuts and traps
+function generateRandomPositions(boardSize, maxShortcutLength = 10) {
+    const numberOfShortcuts = 4;
+    const numberOfTraps = 4;
+    const shortcuts = {};
+    const traps = {};
+    const usedPositions = new Set();
+    let orangeTrap = Math.floor(Math.random() * (boardSize - 1)); // Generate orange trap position
+    // Ensure orange trap is in the last three rows by adjusting the range
+    const minOrangeTrapPosition = boardSize - (3 * cellsPerRow); // Minimum position for last 3 rows
+    orangeTrap = minOrangeTrapPosition + Math.floor(Math.random() * (3 * cellsPerRow));
+    // orange trap should not appear in the last tile which is 48
+    orangeTrap = Math.min(orangeTrap, boardSize - 2);
+    window.orangeTrapPosition = orangeTrap; // Store orange trap position
+
+    while (Object.keys(shortcuts).length < numberOfShortcuts) {
+        let start = Math.floor(Math.random() * (boardSize / 2)); // Shortcuts start in first half
+        let end = Math.min(start + Math.floor(Math.random() * maxShortcutLength) + 5, boardSize - 1);
+        if (start !== end && !usedPositions.has(start) && !usedPositions.has(end) && start !== orangeTrap && end !== orangeTrap) {
+            shortcuts[start] = end;
+            usedPositions.add(start).add(end);
+        }
+    }
+    while (Object.keys(traps).length < numberOfTraps) {
+        let trap = Math.floor(Math.random() * (boardSize - 1));
+        let destination = Math.floor(Math.random() * (boardSize / 2));
+        if (trap !== destination && !usedPositions.has(trap) && !usedPositions.has(destination) && trap !== orangeTrap && destination !== orangeTrap) {
+            traps[trap] = destination;
+            usedPositions.add(trap).add(destination);
+        }
+    }
+    return { shortcuts, traps };
+}
+
 // Create the board
 function createBoard() {
   boardElement.innerHTML = ""; // Prevent board duplication
@@ -159,36 +310,11 @@ function createBoard() {
         cell.appendChild(shortcutIndicator);
     }
     if (window.traps && window.traps[i] !== undefined) cell.classList.add('trap');
+    if (i === window.orangeTrapPosition) cell.classList.add('orange-trap');
+
     boardElement.lastChild.appendChild(cell);
   }
   updatePlayers(); // Ensure players are displayed after board creation
-}
-
-// Function to generate random shortcuts and traps
-function generateRandomPositions(boardSize, maxShortcutLength = 10) {
-    const numberOfShortcuts = 4;
-    const numberOfTraps = 4;
-    const shortcuts = {};
-    const traps = {};
-    const usedPositions = new Set();
-
-    while (Object.keys(shortcuts).length < numberOfShortcuts) {
-        let start = Math.floor(Math.random() * (boardSize / 2)); // Shortcuts start in first half
-        let end = Math.min(start + Math.floor(Math.random() * maxShortcutLength) + 5, boardSize - 1);
-        if (start !== end && !usedPositions.has(start) && !usedPositions.has(end)) {
-            shortcuts[start] = end;
-            usedPositions.add(start).add(end);
-        }
-    }
-    while (Object.keys(traps).length < numberOfTraps) {
-        let trap = Math.floor(Math.random() * (boardSize - 1));
-        let destination = Math.floor(Math.random() * (boardSize / 2));
-        if (trap !== destination && !usedPositions.has(trap) && !usedPositions.has(destination)) {
-            traps[trap] = destination;
-            usedPositions.add(trap).add(destination);
-        }
-    }
-    return { shortcuts, traps };
 }
 
 // Update player positions
@@ -215,16 +341,19 @@ function updatePlayers() {
 }
 
 // Roll the dice with animation
+let diceRoll = 0;
+
 document.getElementById("rollDice").addEventListener("click", () => {
   diceResultElement.textContent = `Rolling...`;
   diceResultElement.style.animation = "shakeDice 0.5s ease-in-out"; // Apply dice shake animation
   diceRollSound.play();
 
   setTimeout(() => {
-    const dice = weightedDiceRoll();
-    diceResultElement.textContent = `You rolled a ${dice}`;
+    diceRoll = weightedDiceRoll();
+    diceResultElement.textContent = `You rolled a ${diceRoll}`;
     diceResultElement.style.animation = ""; // Reset animation after it ends
-    movePlayer(dice);
+    //movePlayer(dice);  // call move player function only on correct answer on trivia
+    showTriviaModal(); // show the trivia question
   }, 1000);
 });
 
@@ -264,6 +393,9 @@ function movePlayer(dice) {
     } else if (window.traps && window.traps[player1Position] !== undefined) {
       player1Position = window.traps[player1Position];
       unlockAchievement(`${player1Name} stepped on a trap!`);
+    } else if (player1Position === window.orangeTrapPosition) {
+        player1Position = 0; // Send back to start
+        unlockAchievement(`${player1Name} landed on an orange trap and goes back to start!`);
     }
     if (player1Position === boardSize - 1) {
       unlockAchievement(`${player1Name} Wins! `);
@@ -283,6 +415,9 @@ function movePlayer(dice) {
     } else if (window.traps && window.traps[player2Position] !== undefined) {
       player2Position = window.traps[player2Position];
       unlockAchievement(`${player2Name} stepped on a trap!`);
+    } else if (player2Position === window.orangeTrapPosition) {
+        player2Position = 0; // Send back to start
+        unlockAchievement(`${player2Name} landed on an orange trap and goes back to start!`);
     }
     if (player2Position === boardSize - 1) {
       unlockAchievement(`${player2Name} Wins! `);
@@ -316,6 +451,9 @@ function resetGame() {
   diceResultElement.textContent = '';
   document.getElementById('rollDice').disabled = false; // Enable dice roll
   document.getElementById('rollDice').style.opacity = 1;
+  player1Score = 0;
+  player2Score = 0;
+  updateScoreDisplay();
 }
 
 // Initialize game - Modified to include Character Selection
@@ -332,10 +470,8 @@ function startGame() {
   window.traps = newTraps;
   createBoard();
   backgroundMusic.play();
+  updatePlayerNameDisplay(); // Initial update of player names
 }
-
-// Initial display of the rename modal
-renameModal.style.display = "block";
 
 // Close the modal if the user clicks outside of it
 window.addEventListener("click", (event) => {
@@ -350,6 +486,9 @@ window.addEventListener("click", (event) => {
     }
     if (event.target == characterModal2) {
         characterModal2.style.display = "none";
+    }
+    if (event.target == triviaModal) {
+        triviaModal.style.display = "none";
     }
 });
 

@@ -12,22 +12,28 @@
   <div class="game-container">
     <h1>🌈 The Rainbow Garden Adventure 🌈</h1>
     <p class="game-intro">Embark on a magical journey through the garden! Roll the dice, move forward, and be the first to reach the finish line! 🚀</p>
-    <div class="board" id="board"></div>
+    <div class="board-wrapper">
+      <div class="player-score-side left-score">
+          <h3><span id="player1NameDisplay">Player 1</span></h3>
+          <p id="player1Score">Score: 0</p>
+      </div>
+    
+      <div class="board" id="board"></div>
+    
+      <div class="player-score-side right-score">
+          <h3><span id="player2NameDisplay">Player 2</span></h3>
+          <p id="player2Score">Score: 0</p>
+      </div>
+    </div>
+
+
     <div class="controls">
       <button id="startGame">🌟 Start Game</button>
       <button id="rollDice">🎲 Roll Dice</button>
       <button id="resetGame">🔄 Reset</button>
       <p id="diceResult" class="dice-result"></p>
       <p id="turn" class="turn-indicator"></p>
-      <div class="player-scores-inline">
-        <div class="player-score-inline">
-            <h3><span id="player1NameDisplay">Player 1</span> Score:</h3>
-            <p id="player1Score">Score: 0</p>
-        </div>
-        <div class="player-score-inline">
-            <h3><span id="player2NameDisplay">Player 2</span> Score:</h3>
-            <p id="player2Score">Score: 0</p>
-        </div>
+      
       </div>
     </div>
     <div class="achievements" id="achievements"></div>

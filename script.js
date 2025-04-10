@@ -57,15 +57,6 @@ renameCloseBtn.addEventListener("click", () => {
     renameModal.style.display = "none";
 });
 
-// Event listener for saving player names
-saveNamesButton.addEventListener("click", () => {
-    player1Name = player1NameInput.value || "Player 1";
-    player2Name = player2NameInput.value || "Player 2";
-    turnElement.textContent = `${player1Name}'s Turn`;
-    renameModal.style.display = "none";
-    // Update player name displays in scores
-    updatePlayerNameDisplay();
-});
 
 
 // Close the modal if the user clicks outside of it
@@ -145,8 +136,14 @@ function loadTriviaQuestion() {
     correctAnswer = questionData.correctAnswer;
 
     answerButtons.forEach((button, index) => {
-        button.textContent = questionData.answers[index];
-        button.classList.remove('correct', 'incorrect'); // Remove previous feedback
+        const answer = questionData.answers[index];
+        if (answer) {
+            button.textContent = answer;
+            button.style.display = 'block';
+        } else {
+            button.style.display = 'none';
+        }
+        button.classList.remove('correct', 'incorrect');
     });
 }
 
@@ -248,7 +245,7 @@ document.getElementById("selectCharacter2").addEventListener("click", () => {
 });
 
 // Function to generate random shortcuts and traps
-function generateRandomPositions(boardSize, maxShortcutLength = 10) {
+function generateRandomPositions(boardSize, maxShortcutLength = 5) {
     const numberOfShortcuts = 4;
     const numberOfTraps = 4;
     const shortcuts = {};
@@ -295,10 +292,24 @@ function createBoard() {
       boardElement.appendChild(row);
       rowCount++;
     }
+
     const cell = document.createElement('div');
     cell.classList.add('cell');
+
+    const isShortcut = window.shortcuts && window.shortcuts[i] !== undefined;
+    const isTrap = window.traps && window.traps[i] !== undefined;
+    const isOrangeTrap = i === window.orangeTrapPosition;
+
+// Only assign a random color if it's not a special tile
+    if (!isShortcut && !isTrap && !isOrangeTrap) {
+    const colorIndex = Math.floor(Math.random() * 5) + 1;
+    cell.classList.add(`color${colorIndex}`);
+    }
+    
     cell.id = `cell-${i}`;
     cell.textContent = i + 1;
+
+ 
     if (window.shortcuts && window.shortcuts[i] !== undefined) {
         cell.classList.add('shortcut');
         // Create a span to show where the shortcut leads to
@@ -307,8 +318,31 @@ function createBoard() {
         shortcutIndicator.textContent = `\u2192 ${window.shortcuts[i] + 1}`; // Arrow and destination cell number
         cell.appendChild(shortcutIndicator);
     }
-    if (window.traps && window.traps[i] !== undefined) cell.classList.add('trap');
-    if (i === window.orangeTrapPosition) cell.classList.add('orange-trap');
+    //yellow tile
+    if (window.traps && window.traps[i] !== undefined) {
+        cell.classList.add('trap');
+    
+        const bananaIcon = document.createElement('span');
+        bananaIcon.textContent = "🍌";
+        bananaIcon.style.fontSize = "1.8em";
+        bananaIcon.style.position = "absolute";
+        bananaIcon.style.top = "5px";
+        bananaIcon.style.left = "5px";
+        cell.appendChild(bananaIcon);
+    }
+    //orange
+    if (i === window.orangeTrapPosition) {
+        cell.classList.add('orange-trap');
+        
+        const orangeIcon = document.createElement('span');
+        orangeIcon.textContent = "🍊";
+        orangeIcon.style.fontSize = "1.8em";
+        orangeIcon.style.position = "absolute";
+        orangeIcon.style.top = "5px";
+        orangeIcon.style.right = "5px";
+        cell.appendChild(orangeIcon);
+    }
+    
 
     boardElement.lastChild.appendChild(cell);
   }
@@ -460,14 +494,15 @@ document.getElementById('startGame').addEventListener('click', () => {
   renameModal.style.display = "block"; // Show rename modal first
 });
 
-// When player names are saved, continue to character selection
 saveNamesButton.addEventListener("click", () => {
     player1Name = player1NameInput.value || "Player 1";
     player2Name = player2NameInput.value || "Player 2";
     turnElement.textContent = `${player1Name}'s Turn`;
     renameModal.style.display = "none";
+    updatePlayerNameDisplay();
     openCharacterModals(); // Move to character selection after names
 });
+
 
 
 function startGame() {
@@ -479,6 +514,7 @@ function startGame() {
   createBoard();
   backgroundMusic.play();
   updatePlayerNameDisplay(); // Initial update of player names
+  document.querySelectorAll('.player-score-side').forEach(el => el.style.display = 'block');
 }
 
 // Close the modal if the user clicks outside of it

@@ -269,9 +269,9 @@ function generateRandomPositions(boardSize, maxShortcutLength = 5) {
     }
     while (Object.keys(traps).length < numberOfTraps) {
         let trap = Math.floor(Math.random() * (boardSize - 1));
-        let destination = Math.floor(Math.random() * (boardSize / 2));
-        if (trap !== destination && !usedPositions.has(trap) && !usedPositions.has(destination) && trap !== orangeTrap && destination !== orangeTrap) {
-            traps[trap] = destination;
+       let destination = Math.max(trap - 2, 0); // Push back 2 tiles or to start
+if (trap !== destination && !usedPositions.has(trap) && trap !== orangeTrap && destination !== orangeTrap) {
+    traps[trap] = destination;
             usedPositions.add(trap).add(destination);
         }
     }

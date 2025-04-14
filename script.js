@@ -100,31 +100,382 @@ function updatePlayerNameDisplay() {
 
 // Trivia Questions (Array of Objects)
 const triviaQuestions = [
-    {
-        question: "Can your body remember some taste experiences?",
-        answers: ["Yes", "No"],
-        correctAnswer: "Yes"
-    },
-    {
-        question: "Do we always forget what food tastes like?",
-        answers: ["Yes", "No"],
-        correctAnswer: "No"
-    },
-    {
-        question: "Which of these is true?",
-        answers: ["Our body remembers some tastes", "Our body forgets all tastes"],
-        correctAnswer: "Our body remembers some tastes"
-    },
-    {
-        question: "Do frozen foods hold more or less nutrients than fresh foods?",
-        answers: ["More", "Less", "Both hold the same"],
-        correctAnswer: "Both hold the same"
-    },
-    {
-        question: "Are Fresh Foods more nutritious than frozen foods?",
-        answers: ["Yes", "No"],
-        correctAnswer: "No"
-    }
+        {
+            question: "Can your body remember some taste experiences?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "Do we always forget what food tastes like?",
+            answers: ["Yes", "No"],
+            correctAnswer: "No"
+        },
+        {
+            question: "Which of these is true?",
+            answers: ["Our body remembers some tastes", "Our body forgets all tastes"],
+            correctAnswer: "Our body remembers some tastes"
+        },
+        {
+            question: "Do frozen foods hold more or less nutrients than fresh foods?",
+            answers: ["More", "Less", "Both hold the same"],
+            correctAnswer: "Both hold the same"
+        },
+        {
+            question: "Are Fresh Foods more nutritious than frozen foods?",
+            answers: ["Yes", "No"],
+            correctAnswer: "No"
+        },
+        {
+            question: "Is cottage cheese a good source of protein?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "What nutrients are in cottage cheese?",
+            answers: ["Protein", "Calcium", "Amino Acids", "All of the above"],
+            correctAnswer: "All of the above"
+        },
+        {
+            question: "Which food has protein and calcium?",
+            answers: ["Candy", "Cottage Cheese", "Soda"],
+            correctAnswer: "Cottage Cheese"
+        },
+        {
+            question: "Are strawberries and raspberries good for your body?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "Which of the following can help fight cancer?",
+            answers: ["Strawberries and Raspberries", "Chocolate Chips", "Marshmallows"],
+            correctAnswer: "Strawberries and Raspberries"
+        },
+        {
+            question: "What makes strawberries and raspberries healthy?",
+            answers: ["Antioxidants", "Sugar", "Food coloring"],
+            correctAnswer: "Antioxidants"
+        },
+        {
+            question: "Are baked potatoes high or low in calories?",
+            answers: ["High", "Low"],
+            correctAnswer: "Low"
+        },
+        {
+            question: "Which food is good at absorbing simple sugars?",
+            answers: ["Baked Potatoes", "Ice Cream", "Soda"],
+            correctAnswer: "Baked Potatoes"
+        },
+        {
+            question: "Are baked potatoes healthy?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },        
+        {
+            question: "How many chambers do tomatoes have?",
+            answers: ["2", "4", "6"],
+            correctAnswer: "4"
+        },
+        {
+            question: "Which fruit has a similar number of chambers (4) like a heart inside?",
+            answers: ["Apple", "Tomato", "Banana"],
+            correctAnswer: "Tomato"
+        },
+        {
+            question: "Do tomatoes have the same number of chambers as the heart?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "What is important for cancer patients to eat?",
+            answers: ["Candy", "Protein", "Soda"],
+            correctAnswer: "Protein"
+        },
+        {
+            question: "Is protein good for people with cancer?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "Which apple has the most antioxidants?",
+            answers: ["Green Apple", "Gala Apple", "Red Delicious"],
+            correctAnswer: "Red Delicious"
+        },
+        {
+            question: "Are apples healthy?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "Which is the healthiest apple?",
+            answers: ["Red Delicious", "Candy Apple", "Caramel Apple"],
+            correctAnswer: "Red Delicious"
+        },
+        {
+            question: "What keeps guacamole from turning brown?",
+            answers: ["Water", "Oil", "Sugar"],
+            correctAnswer: "Water"
+        },
+        {
+            question: "What should you put on guacamole to keep it green?",
+            answers: ["Water", "Sugar"],
+            correctAnswer: "Water"
+        },
+        {
+            question: "Is plant-based milk healthy for adults?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "Which is better for adults?",
+            answers: ["Plant-based milk", "Soda", "Apple juice"],
+            correctAnswer: "Plant-based milk"
+        },
+        {
+            question: "What does 'from concentrate' mean?",
+            answers: ["No sugar", "Added sugar"],
+            correctAnswer: "Added sugar"
+        },
+        {
+            question: "Is a drink that is 'from concentrate' better or worse than 'No concentrate'?",
+            answers: ["Better", "Worse"],
+            correctAnswer: "Worse"
+        },
+        {
+            question: "What does chicken have that fights inflammation?",
+            answers: ["Glucosamine", "Salt", "Butter"],
+            correctAnswer: "Glucosamine"
+        },
+        {
+            question: "Is glucosamine found in chicken?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "What is the most eaten fish in America?",
+            answers: ["Tuna", "Salmon", "Cod"],
+            correctAnswer: "Salmon"
+        },
+        {
+            question: "Do people eat a lot of salmon in America?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "What happens if you cook food too fast?",
+            answers: ["It dries out", "It tastes better"],
+            correctAnswer: "It dries out"
+        },
+        {
+            question: "Should you slowly cook food or heat it fast?",
+            answers: ["Slowly", "Fast"],
+            correctAnswer: "Slowly"
+        },
+        {
+            question: "What juice helps you sleep?",
+            answers: ["Apple Juice", "Dark Cherry Juice", "Orange Juice"],
+            correctAnswer: "Dark Cherry Juice"
+        },
+        {
+            question: "Is dark cherry juice good for sleep?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "Which vegetable is one of the world’s healthiest foods?",
+            answers: ["Sweet Potatoes", "French Fries", "Donuts"],
+            correctAnswer: "Sweet Potatoes"
+        },
+        {
+            question: "What vitamins are in sweet potatoes?",
+            answers: ["A", "C", "Potassium", "All of them"],
+            correctAnswer: "All of them"
+        },
+        {
+            question: "What spice helps your tummy feel better?",
+            answers: ["Cinnamon", "Pepper", "Salt"],
+            correctAnswer: "Cinnamon"
+        },
+        {
+            question: "Is cinnamon good for digestion?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "What food helps your immune system?",
+            answers: ["Candy", "Squash", "Cake"],
+            correctAnswer: "Squash"
+        },
+        {
+            question: "Does squash help keep you healthy?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "What food helps with heart health?",
+            answers: ["Black Olives", "Chips", "Ice Cream"],
+            correctAnswer: "Black Olives"
+        },
+        {
+            question: "Are black olives good for your heart?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "What gives mustard its yellow color?",
+            answers: ["Turmeric", "Cheese", "Lemon"],
+            correctAnswer: "Turmeric"
+        },
+        {
+            question: "What part of mustard helps fight disease?",
+            answers: ["Mustard Seeds", "Sugar", "Butter"],
+            correctAnswer: "Mustard Seeds"
+        },
+        {
+            question: "Is mustard a super food?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "How should lamb be cooked?",
+            answers: ["Medium", "Well Done", "Raw"],
+            correctAnswer: "Medium"
+        },
+        {
+            question: "Is lamb a lean protein?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "Which fruit hangs like your heart?",
+            answers: ["Red Grapes", "Apples", "Peaches"],
+            correctAnswer: "Red Grapes"
+        },
+        {
+            question: "Are red grapes good for your heart?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "What vitamin do mushrooms have?",
+            answers: ["Vitamin A", "Vitamin D", "Vitamin C"],
+            correctAnswer: "Vitamin D"
+        },
+        {
+            question: "Are mushrooms good for your body?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "How should pork be cooked?",
+            answers: ["Medium", "Burnt", "Rare"],
+            correctAnswer: "Medium"
+        },
+        {
+            question: "What should you avoid when fighting cancer?",
+            answers: ["Nitrates", "Apples", "Water"],
+            correctAnswer: "Nitrates"
+        },
+        {
+            question: "Which fruit is low in calories and gives you energy?",
+            answers: ["Watermelon", "Cake", "Cookies"],
+            correctAnswer: "Watermelon"
+        },
+        {
+            question: "Which fruit has vitamin C?",
+            answers: ["Cantaloupe", "Ice Cream", "Chips"],
+            correctAnswer: "Cantaloupe"
+        },
+        {
+            question: "What helps with digestion?",
+            answers: ["Wild Rice", "Candy", "Soda"],
+            correctAnswer: "Wild Rice"
+        },
+        {
+            question: "What fruit helps your eyes and skin?",
+            answers: ["Plums", "Donuts", "Cheese"],
+            correctAnswer: "Plums"
+        },
+        {
+            question: "How should you cook grass-fed meat?",
+            answers: ["Fast and hot", "Slow and low"],
+            correctAnswer: "Slow and low"
+        },
+        {
+            question: "What spice helps with nausea?",
+            answers: ["Ginger", "Cinnamon", "Salt"],
+            correctAnswer: "Ginger"
+        },
+        {
+            question: "What helps your body digest food better?",
+            answers: ["Heat", "Cold"],
+            correctAnswer: "Heat"
+        },
+        {
+            question: "What spice helps your blood flow?",
+            answers: ["Lemon Pepper", "Sugar", "Cinnamon"],
+            correctAnswer: "Lemon Pepper"
+        },
+        {
+            question: "What herb protects your cells?",
+            answers: ["Dried Basil", "Lettuce", "Parsley"],
+            correctAnswer: "Dried Basil"
+        },
+        {
+            question: "What food helps your heart stay healthy?",
+            answers: ["Garlic", "Chocolate", "Soda"],
+            correctAnswer: "Garlic"
+        },
+        {
+            question: "What fruit helps your bones grow strong?",
+            answers: ["Bananas", "Chips", "Soda"],
+            correctAnswer: "Bananas"
+        },
+        {
+            question: "What’s a good breakfast food?",
+            answers: ["Eggs", "Candy", "Cookies"],
+            correctAnswer: "Eggs"
+        },
+        {
+            question: "What fish has Omega-3?",
+            answers: ["Cod", "Tuna", "Salmon"],
+            correctAnswer: "Cod"
+        },
+        {
+            question: "What vegetable looks like our cells?",
+            answers: ["Onion", "Tomato", "Carrot"],
+            correctAnswer: "Onion"
+        },
+        {
+            question: "How many servings of fish should you eat a week?",
+            answers: ["1", "2", "5"],
+            correctAnswer: "2"
+        },
+        {
+            question: "What vegetable helps your bones?",
+            answers: ["Celery", "Broccoli", "Pickles"],
+            correctAnswer: "Celery"
+        },
+        {
+            question: "What medicine came from mushrooms?",
+            answers: ["Penicillin", "Tylenol", "Aspirin"],
+            correctAnswer: "Penicillin"
+        },
+        {
+            question: "What food helps keep you hydrated?",
+            answers: ["Cucumbers", "Bread", "Chips"],
+            correctAnswer: "Cucumbers"
+        },
+        {
+            question: "Do tomatoes get healthier when heated?",
+            answers: ["Yes", "No"],
+            correctAnswer: "Yes"
+        },
+        {
+            question: "Why should you eat different colors?",
+            answers: ["To get different vitamins", "To make your plate pretty"],
+            correctAnswer: "To get different vitamins"
+        }    
+    
 ];
 
 // Function to populate trivia modal with a random question

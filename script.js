@@ -4,6 +4,7 @@ const cellsPerRow = 8; // Increased cells per row
 let player1Position = 0;
 let player2Position = 0;
 let currentPlayer = 1;
+let playerWinnerId = '';
 const diceResultElement = document.getElementById('diceResult');
 const turnElement = document.getElementById('turn');
 const boardElement = document.getElementById('board');
@@ -35,6 +36,51 @@ const saveNamesButton = document.getElementById("saveNames");
 
 let player1Name = "Player 1";
 let player2Name = "Player 2";
+
+const downloadCertificateBtn = document.getElementById("downloadCertificateBtn");
+const image = document.getElementById('templateImage');
+const canvas = document.getElementById('myCanvas');
+const ctx = canvas.getContext('2d');
+
+// Event listener for opening the "download certificate" modal
+downloadCertificateBtn.addEventListener("click", () => {	
+  generatePDF();	
+});
+
+function generatePDF() {
+  const name = document.getElementById(playerWinnerId).value;
+
+  // Make sure image is loaded before drawing
+  if (!image.complete) {
+	image.onload = () => drawAndExport(name);
+  } else {
+	drawAndExport(name);
+  }
+}
+
+function drawAndExport(name) {
+  canvas.width = image.width;
+  canvas.height = image.height;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(image, 0, 0);
+
+  // Draw the name text centered (adjust positioning as needed)
+  ctx.font = '30px Arial';
+  ctx.fillStyle = 'black';
+  ctx.textAlign = 'center';
+  ctx.fillText(name, canvas.width / 2, 400);
+
+  const imgData = canvas.toDataURL('image/png');
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({
+	orientation: 'landscape',
+	unit: 'px',
+	format: [canvas.width, canvas.height]
+  });
+
+  pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+  pdf.save('custom-image.pdf');
+}
 
 // How to Play Modal Elements
 const howToPlayBtn = document.getElementById("howToPlayBtn");
@@ -768,27 +814,34 @@ function weightedDiceRoll() {
 function movePlayer(dice) {
   let newPosition;
   if (currentPlayer === 1) {
-    newPosition = player1Position + dice;
-    player1Position = Math.min(newPosition, boardSize - 1);
-    if (window.shortcuts && window.shortcuts[player1Position] !== undefined) {
-      player1Position = window.shortcuts[player1Position];
-      unlockAchievement(`${player1Name} found a shortcut!`);
-    } else if (window.traps && window.traps[player1Position] !== undefined) {
-      player1Position = window.traps[player1Position];
-      unlockAchievement(`${player1Name} stepped on a trap!`);
-    } else if (player1Position === window.orangeTrapPosition) {
-        player1Position = 0; // Send back to start
-        unlockAchievement(`${player1Name} landed on an orange trap and goes back to start!`);
-    }
-    if (player1Position === boardSize - 1) {
-      unlockAchievement(`${player1Name} Wins! `);
+	  unlockAchievement(`${player1Name} Wins! `);
       const winSound = new Audio('win-sound.wav');
       winSound.play();
+	  document.getElementById("congratzBannerModal").style.display = "block";
+	  playerWinnerId = "player1Name";
       endGame();
-    } else {
-      currentPlayer = 2;
-      turnElement.textContent = `${player2Name}'s Turn`;
-    }
+     newPosition = player1Position + dice;
+     player1Position = Math.min(newPosition, boardSize - 1);
+     if (window.shortcuts && window.shortcuts[player1Position] !== undefined) {
+       player1Position = window.shortcuts[player1Position];
+       unlockAchievement(`${player1Name} found a shortcut!`);
+     } else if (window.traps && window.traps[player1Position] !== undefined) {
+       player1Position = window.traps[player1Position];
+       unlockAchievement(`${player1Name} stepped on a trap!`);
+     } else if (player1Position === window.orangeTrapPosition) {
+         player1Position = 0; // Send back to start
+         unlockAchievement(`${player1Name} landed on an orange trap and goes back to start!`);
+     }
+     if (player1Position === boardSize - 1) {
+       unlockAchievement(`${player1Name} Wins! `);
+       const winSound = new Audio('win-sound.wav');
+       winSound.play();
+	   document.getElementById("congratzBannerModal").style.display = "block";
+       endGame();
+     } else {
+       currentPlayer = 2;
+       turnElement.textContent = `${player2Name}'s Turn`;
+     }
   } else {
     newPosition = player2Position + dice;
     player2Position = Math.min(newPosition, boardSize - 1);
@@ -806,6 +859,8 @@ function movePlayer(dice) {
       unlockAchievement(`${player2Name} Wins! `);
       const winSound = new Audio('win-sound.wav');
       winSound.play();
+	  document.getElementById("congratzBannerModal").style.display = "block";
+	  playerWinnerId = "player2Name";
       endGame();
     } else {
       currentPlayer = 1;

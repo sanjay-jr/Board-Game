@@ -250,6 +250,14 @@ button:disabled {
     position: relative;
 }
 
+.modal-content-no-background {
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px;
+    position: relative;
+}
+
 /* The Close Button */
 .close {
     position: absolute;
@@ -463,3 +471,6 @@ button:disabled {
     100% { opacity: 0; transform: translateY(-10px); }
   }
   
+    #canvasWrapper {
+      display: none; /* Hidden initially */
+    }

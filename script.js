@@ -814,12 +814,12 @@ function weightedDiceRoll() {
 function movePlayer(dice) {
   let newPosition;
   if (currentPlayer === 1) {
-	  unlockAchievement(`${player1Name} Wins! `);
-      const winSound = new Audio('win-sound.wav');
-      winSound.play();
-	  document.getElementById("congratzBannerModal").style.display = "block";
-	  playerWinnerId = "player1Name";
-      endGame();
+	  //unlockAchievement(`${player1Name} Wins! `);
+      //const winSound = new Audio('win-sound.wav');
+      //winSound.play();
+	  //document.getElementById("congratzBannerModal").style.display = "block";
+	 // playerWinnerId = "player1Name";
+     // endGame();
      newPosition = player1Position + dice;
      player1Position = Math.min(newPosition, boardSize - 1);
      if (window.shortcuts && window.shortcuts[player1Position] !== undefined) {

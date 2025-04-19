@@ -837,6 +837,7 @@ function movePlayer(dice) {
        const winSound = new Audio('win-sound.wav');
        winSound.play();
 	   document.getElementById("congratzBannerModal").style.display = "block";
+	   playerWinnerId = "player1Name";
        endGame();
      } else {
        currentPlayer = 2;

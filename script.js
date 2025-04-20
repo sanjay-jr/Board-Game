@@ -169,7 +169,7 @@ const triviaQuestions = [
         {
             question: "Are Fresh Foods more nutritious than frozen foods?",
             answers: ["Yes", "No"],
-            correctAnswer: "No"
+            correctAnswer: "Yes"
         },
         {
             question: "Is cottage cheese a good source of protein?",

@@ -41,10 +41,17 @@ const downloadCertificateBtn = document.getElementById("downloadCertificateBtn")
 const image = document.getElementById('templateImage');
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
+const congratzBannerModal = document.getElementById("congratzBannerModal");
 
 // Event listener for opening the "download certificate" modal
 downloadCertificateBtn.addEventListener("click", () => {	
   generatePDF();	
+});
+
+// Event listener for closing the "banner" modal
+const congratzBannerCloseBtn = congratzBannerModal.querySelector(".close");
+congratzBannerCloseBtn.addEventListener("click", () => {
+    congratzBannerModal.style.display = "none";
 });
 
 function generatePDF() {

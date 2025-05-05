@@ -1,10 +1,10 @@
 // Game variables
 const boardSize = 48; // Double the board size
 const cellsPerRow = 8; // Increased cells per row
-let player1Position = 0;
-let player2Position = 0;
-let currentPlayer = 1;
-const diceResultElement = document.getElementById('diceResult');
+let player1Position = 0; //position of player 1
+let player2Position = 0;//position of player 2
+let currentPlayer = 1; //current position
+const diceResultElement = document.getElementById('diceResult'); 
 const turnElement = document.getElementById('turn');
 const boardElement = document.getElementById('board');
 const achievementsElement = document.getElementById('achievements');
@@ -23,23 +23,26 @@ const closeGradeModal = document.getElementById("closeGradeModal");
 
   
 
-let selectedGrade = null; // Global variable to store which grade was picked
+let selectedGrade = null; // Global variable for the grade selector  grade was picked
 let triviaQuestions = []; // Will be set after player picks a grade
 
 
-// Trophy system
+// Achievement system
 const achievements = [];
-function unlockAchievement(message) {
-  if (!achievements.includes(message)) {
-    achievements.push(message);
-    const achievement = document.createElement('div');
-    achievement.classList.add('achievement');
-    achievement.textContent = ` ${achievements.length}. ${message}`;
-    achievementsElement.appendChild(achievement);
-    setTimeout(() => achievement.remove(), 5000);
-  }
+//function for pop message
+    function unlockAchievement(message) {
+    if (!achievements.includes(message)) {
+        achievements.push(message);
+        const achievement = document.createElement('div');
+        achievement.classList.add('achievement');
+        achievement.textContent = ` ${achievements.length}. ${message}`;
+        achievementsElement.appendChild(achievement);
+        //time set for message
+        setTimeout(() => achievement.remove(), 5000);
+    }
 }
 
+//Renaming the players
 // Rename Modal Elements
 const renameModal = document.getElementById("renameModal");
 const player1NameInput = document.getElementById("player1Name");
@@ -67,7 +70,7 @@ howToPlayCloseBtn.addEventListener("click", () => {
     howToPlayModal.style.display = "none";
 });
 
-// Event listener for closing the modal
+// Event listener for closing the how to play window closer
 const renameCloseBtn = renameModal.querySelector(".close");
 renameCloseBtn.addEventListener("click", () => {
     renameModal.style.display = "none";
@@ -205,7 +208,8 @@ const triviaQuestionsKindergarten = [
 
     // Add more Kindergarten questions here...
   ];
-  
+  /* Citation: MDN Web Docs. (n.d.). Object basics - Learn web development. Retrieved April 2025, from https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics*/
+
   const triviaQuestionsGrade1 = [
     
            // Adam Apple
@@ -308,7 +312,7 @@ const triviaQuestionsKindergarten = [
     // Add more 1st Grade questions here...
   ];
   
-
+  /* Citation: MDN Web Docs. (n.d.). Object basics - Learn web development. Retrieved April 2025, from https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics*/
   const triviaQuestionsGrade2 = [
    // Adam Apple
 
@@ -1150,7 +1154,7 @@ const triviaQuestionsKindergarten = [
 }
 
 ];
-
+  /* Citation: MDN Web Docs. (n.d.). Object basics - Learn web development. Retrieved April 2025, from https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics*/
 
   const triviaQuestionsGrade2to4 = [
 
@@ -2039,7 +2043,7 @@ const triviaQuestionsKindergarten = [
    
     // Add more 3nd–4th Grade questions here...
   ];
-  
+    /* Citation: MDN Web Docs. (n.d.). Object basics - Learn web development. Retrieved April 2025, from https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics*/
 
 
 // Function to populate trivia modal with a random question
@@ -2329,6 +2333,7 @@ function weightedDiceRoll() {
     return 1;
 }
 
+//Player movement
 function movePlayer(dice) {
   let newPosition;
   if (currentPlayer === 1) {

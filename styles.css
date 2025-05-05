@@ -1,218 +1,235 @@
+/* The font that we are using is Quick sand */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
-
+/* Citation:  Google Fonts - Quicksand: Retrieved February 2025, from https://fonts.google.com/specimen/Quicksand*/
 body {
-    font-family: 'Quicksand', sans-serif;
-    background: url('rainbow.jpg') no-repeat center center fixed;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: 'Quicksand', sans-serif; /* Google Fonts: https://fonts.google.com/specimen/Quicksand */
+    background: url('/wp-content/Rainbow/rainbow.jpg') no-repeat center center fixed; /* Testing it to see if the background issue stops*/
+    background-size: cover; 
     margin: 0;
-    overflow-x: hidden;
+    overflow-x: hidden; /*stops horzontal movement*/
 }
+/*overflow-x: hidden   Citiation: Mozilla Developer Network (MDN). (n.d.). Overflow-x  Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-x*/
+
 
 .game-container {
     text-align: center ; 
     background: white;
-    padding: 20px;
-    border-radius: 25px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-    max-width: 1150px;
-    transition: all 0.3s ease;
+    padding: 20px; /* 30px 35px*/ 
+    border-radius: 25px; /* make sure that game box is not too big because of WP*/ 
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25); /* Citation: Cope, S. (2022, September 22). box-shadow | CSS-Tricks. Retrieved from https://css-tricks.com/almanac/properties/b/box-shadow/*/
+    max-width: 1000px; /* 1200px*/ 
+    transition: all 0.3s ease; /* changes how fast the transition after clicking start*/ 
+    margin-top: 30px; 
 }
+/* game-container    Citation: MDN Web Docs. (n.d.). Box model - Boxmodel. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model*/
+/* 'transition:' Citation: W3Schools. (n.d.). CSS3 Transitions. Retrieved april 2025, from https://www.w3schools.com/css/css3_transitions.asp*/
+/* max-width  Citation: W3Schools. (n.d.). CSS max-width Property. Retrieved May 2025, from https://www.w3schools.com/cssref/pr_dim_max-width.php*/
+
 
 .game-container:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Citation: Cope, S. (2022, September 22). box-shadow | CSS-Tricks. Retrieved from https://css-tricks.com/almanac/properties/b/box-shadow/*/
+    transform: translateY(-3px); /* moves the container a little bit. might change to -5*/
 }
 
+/* heading for the top*/
 h1 {
-    color: #ff6f61;
-    font-size: 30px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    color: #ff6f61; /*Color of the words "Rainbow garden*/
+    font-size: 30px; /* keep it at this size*/ 
+    font-weight: 600; /* bold font */
+    margin-bottom: 20px; /* keep at this. */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* original at 4px 4px 5px */
 }
+/* h1   Citiation: Mozilla Developer Network (MDN). (n.d.). Values and units  Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units*/
 
+/*This is for the sentence right under the title*/
 .game-intro {
-    font-size: 15px;
-    color: #555;
+    font-size: 15px; /* do not make the font large than the title*/
+    color: #555; 
     margin-bottom: 30px;
-    line-height: 1.6;
+    line-height: 1.6; /*changes the height of the sentence*/
 }
 
+/*the board*/
 .board {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* displays vertical */
+    align-items: center; /* displays on the center */
     padding: 20px;
-    background: #f0f8ff;
-    border: 4px solid #444;
+    background: #f0f8ff; /* main color of the board*/
+    border: 4px solid #444; /*color of the border was changed to a lighter black*/
     border-radius: 15px;
     width: 100%;
-    max-width: 1000px;
+    max-width: 900px; /*was at 1000px but did not fit on the screen propertly */
     box-sizing: border-box;
 }
+/* .board Citation: MDN Web Docs. (n.d.). Backgrounds and borders - Learn web development.  Retrieved April 2025, from https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Backgrounds_and_borders*/
 
+/* row of tiles*/
 .row {
     display: flex;
     justify-content: center;
     width: 100%;
 }
-
+/* row of tiles */
 .row.reverse {
     flex-direction: row-reverse;
 }
 
+/*Tiles*/
 .cell {
-    width: 110px;
-    height: 110px;
-    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7); /* multi color tile*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 3px solid #555;
+    border: 3px solid #555; /*outline of the tile*/
     border-radius: 15px;
     margin: 5px;
-    font-size: 28px;
+    font-size: 28px; /*size of the number on the tile*/ 
     font-weight: bold;
     color: #222;
-    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease;
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease; /*When you hover over the tile*/
     position: relative;
 }
-
+/*tile movement*/
 .cell:hover {
     transform: scale(1.1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/*Special Tiles*/
+
+/*Shortcut tile*/
 .cell.shortcut {
-    background: linear-gradient(135deg, #a8edea, #fed6e3);
+    background: linear-gradient(135deg, #a8edea, #fed6e3); /* multi color tile*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    display: flex;
     color: #333;
     font-weight: bold;
-    border: 2px dashed #888;
+    border: 2px dashed #888; /*Has dashed lines now*/
 }
-
+/*Orignal Trap tile*/
 .cell.trap {
-    background: linear-gradient(135deg, #ddbe0c, #e8c602);
+    background: linear-gradient(135deg, #ddbe0c, #e8c602);  /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    display: flex;
     color: black;
     font-weight: bold;
     border: 2px dotted #888;
 }
-
+/*Orange Trap tile*/
 .cell.orange-trap {
     background: orange;
     color: black;
     font-weight: bold;
     border: 2px dotted #888;
 }
-
+/*Colors of the other tiles*/
 .cell.color1 {
-    background: linear-gradient(135deg, #3443ec, #c2e9fb); /* blue */
+    background: linear-gradient(135deg, #3443ec, #c2e9fb); /* blue */ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
 }
 
 .cell.color2 {
-    background: linear-gradient(135deg, #e384c8, #fc3dc3); /* pink*/
+    background: linear-gradient(135deg, #e384c8, #fc3dc3); /* pink*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
 }
 
 .cell.color3 {
-    background: linear-gradient(135deg, #d4fc79, #20cb37); /* green */
+    background: linear-gradient(135deg, #d4fc79, #20cb37); /* green */ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
 }
 
 .cell.color4 {
-    background: linear-gradient(135deg, #e83232, #d32e29); /* red */
+    background: linear-gradient(135deg, #e83232, #d32e29); /* red */ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
 }
 
 .cell.color5 {
-    background: linear-gradient(135deg, #ad6af0, #6b37e5); /* purple*/
+    background: linear-gradient(135deg, #ad6af0, #6b37e5); /* purple*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
 }
 
-
+/*Player 1*/
 .player {
-    width: 48px;
-    height: 48px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    background: #ff6f61;
-    box-shadow: 0 0 10px rgba(255, 111, 97, 0.7);
+    background: #ff6f61; /*color of player 1*/
+    box-shadow: 0 0 10px rgba(255, 111, 97, 0.7); /* Citation: MDN Web Docs. (n.d.). box-shadow - CSS: Cascading Style Sheets. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow*/
     display: flex;
-    justify-content: center;
+    justify-content: center; /*fixes the issue of it not centering horizontally */
     align-items: center;
     font-size: 22px;
     color: white;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out; /*When you hover over the plaer*/
 }
-
+/*Player 2*/
 .player2 {
-    background: #6b5b95;
-    box-shadow: 0 0 10px rgba(107, 91, 149, 0.7);
+    background: #6b5b95; /*color of player 2*/
+    box-shadow: 0 0 10px rgba(107, 91, 149, 0.7); /* Citation: MDN Web Docs. (n.d.). box-shadow - CSS: Cascading Style Sheets. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow*/
 }
-
+/*the charact image*/
 .player img {
-    width: 48px;
-    height: 48px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
 }
-
+/*button placement*/
 .controls {
     margin-top: 30px;
 }
-
+/*The Buttons*/
 button {
     padding: 15px 30px;
     font-size: 20px;
     font-weight: bold;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    color: white;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);  /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    color: white; 
     border: none;
     border-radius: 12px;
-    cursor: pointer;
+    cursor: pointer; /* Citation: MDN Web Docs. (n.d.). cursor - CSS: Cascading Style Sheets. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/cursor*/
     transition: all 0.3s;
     box-shadow: 0 4px 12px rgba(255, 94, 125, 0.5);
 }
-
+/* hovering over the buttons*/
 button:hover {
-    background: linear-gradient(135deg, #ff4a3d, #ff6a8b);
-    transform: scale(1.05);
+    background: linear-gradient(135deg, #ff4a3d, #ff6a8b); /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    transform: scale(1.05); /*needs to be looked at */ /* Citation: MDN Web Docs. (n.d.). scale() - CSS: Cascading Style Sheets. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale*/
     box-shadow: 0 5px 12px rgba(255, 94, 125, 0.7);
 }
-
+/* This is not in use.
 button:disabled {
-    background: #cccccc;
-    color: #666666;
+    background:
     cursor: not-allowed;
     box-shadow: none;
     transform: none;
 }
-
+*/
+/*Dice message*/
 #diceResult, #turn {
     font-size: 24px;
     font-weight: bold;
     color: #333;
     margin-top: 20px;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1); /* Citation: MDN Web Docs. (n.d.). box-shadow - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow*/
 }
 
 /* Player Score Styles */
 .board-wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* fixes the issue horizonatally*/
     gap: 20px;
     margin: 30px 0;
 }
-
+/* The score windows on the side*/
 .player-score-side {
     display: none; /* Hidden until game starts */
-    width: 120px;
+    width: 100px;
     padding: 15px;
-    background: #fefefe;
+    background: #fefefe; /* color of background */
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     font-weight: bold;
 }
-
+/* This fixes the order of the score boards. they are now on each side the board*/
+/*Player 1 score*/
 .left-score {
     order: 1;
 }
@@ -220,7 +237,7 @@ button:disabled {
 .board {
     order: 2;
 }
-
+/*Player 2 score*/
 .right-score {
     order: 3;
 }
@@ -229,54 +246,46 @@ button:disabled {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
+    z-index: 1; /* Sit on top */ /* Citation: W3Schools. (n.d.). CSS z-index Property. Retrieved March 2025, from https://www.w3schools.com/cssref/pr_pos_z-index.php*/
+    left: 0; /*needed to be added for WP*/
+    top: 0; /* this too */
+    width: 100%; 
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0,0,0,0.4); 
 }
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/w3css/w3css_modal.asp*/
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto; /*  was 20% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
-    max-width: 500px;
+    max-width: 400px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     position: relative;
 }
 
-.modal-content-no-background {
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    width: 80%; /* Could be more or less, depending on screen size */
-    max-width: 500px;
-    position: relative;
-}
-
 /* The Close Button */
 .close {
-    position: absolute;
+    position: absolute; /*Keeps it here. fixes the issue*/
     top: 10px;
     right: 15px;
     color: #aaa;
     font-size: 28px;
     font-weight: bold;
-    cursor: pointer;
+    cursor: pointer; /* Citation: MDN Web Docs. (n.d.). cursor - CSS: Cascading Style Sheets. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/cursor*/
 }
 
-.close:hover,
-.close:focus {
+.close:hover {
     color: black;
-    text-decoration: none;
     cursor: pointer;
 }
 
 /* Rename Modal Specific Styles */
+/*Needed for naming the players*/
 #renameModal label, #renameModal input {
     display: block;
     margin-top: 10px;
@@ -301,7 +310,7 @@ button:disabled {
 
 /* Trivia Modal Specific Styles */
 #triviaModal {
-  z-index: 2;
+  z-index: 2; /* Citation: W3Schools. (n.d.). CSS z-index Property. Retrieved April 2025, from https://www.w3schools.com/cssref/pr_pos_z-index.php*/
 }
 
 #triviaModal h2 {
@@ -324,25 +333,25 @@ button:disabled {
   color: white;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
+  cursor: pointer; /* Citation: MDN Web Docs. (n.d.). cursor - CSS: Cascading Style Sheets. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/cursor*/
   transition: background-color 0.3s ease;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #667eea, #764ba2); /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
 }
-
+/*colors of buttons when answered*/
 .answer-button:hover {
-  background: linear-gradient(135deg, #4c6698, #633a82);
+  background: linear-gradient(135deg, #4c6698, #633a82); /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
 }
 
 .answer-button.correct {
-    background: linear-gradient(135deg, #4CAF50, #66BB6A); /* Green shades for correct answer */
+    background: linear-gradient(135deg, #4CAF50, #66BB6A); /* Green shades for correct answer */ /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
     color: white;
 }
 
 .answer-button.incorrect {
-    background: linear-gradient(135deg, #F44336, #E57373); /* Red shades for incorrect answer */
+    background: linear-gradient(135deg, #F44336, #E57373); /* Red shades for incorrect answer */ /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
     color: white;
 }
-
+/*Message when answering the question*/
 #triviaResult {
   font-size: 18px;
   font-weight: bold;
@@ -350,29 +359,29 @@ button:disabled {
   color: #333;
 }
 
-/* How to Play Button */
+/* How to Play Button window*/
 .how-to-play-btn {
-    padding: 12px 24px;
-    font-size: 18px;
+
+    padding: 15px 30px;
+    font-size: 20px;
     font-weight: bold;
-    background: #5cb85c;
+    background: #5cb85c; /*color */
     color: white;
     border: none;
-    border-radius: 7px;
-    cursor: pointer;
+    border-radius: 12px;
+    cursor: pointer;  /* Citation: MDN Web Docs. (n.d.). cursor - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/cursor*/
     transition: background-color 0.3s ease;
-    margin-top: 15px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    margin-left: 10px;
 }
+/* Citation: MDN Web Docs. (n.d.). Box model - Learn web development. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model*/
+
 
 .how-to-play-btn:hover {
     background: #4cae4c;
 }
 
-/* Shortcut and Trap indicators in How to Play */
+/* Shortcut and Trap indicators */
 .indicator {
     display: inline-block;
     width: 24px;
@@ -380,16 +389,16 @@ button:disabled {
     border-radius: 50%;
     margin-right: 8px;
 }
-
+/*Shortcut circles in the how-to-play window*/
 .shortcut-indicator {
-    background: linear-gradient(135deg, #a8edea, #fed6e3);
+    background: linear-gradient(135deg, #a8edea, #fed6e3); /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
     border: 2px dashed #888;
     font-size: 1em;
     width: 24px;            
     height: 24px;           
     line-height: 24px;      
 }
-
+/*Trap circles in the how-to-play window*/
 .trap-indicator {
     background: #ffdb0f;
     border: 2px dotted #888;
@@ -397,7 +406,7 @@ button:disabled {
     height: 24px;           
     line-height: 24px;      
 }
-
+/*Orange trap in the how-to-play window*/
 .orange-trap-indicator {
     background: orange;
     border: 2px dotted #888;
@@ -405,7 +414,7 @@ button:disabled {
     height: 24px;           
     line-height: 24px;      
 }
-
+/*This is for the text in the how-to-play window*/
 #renameModal h2,
 #howToPlayModal h2 {
     font-size: 28px;
@@ -426,7 +435,7 @@ button:disabled {
     gap: 10px;
     margin-bottom: 20px;
 }
-
+/*Character selection window*/
 .character-selection img {
     width: 80px;
     height: 80px;
@@ -443,14 +452,14 @@ button:disabled {
 .character-selection img.selected {
     border-color: #007bff;
 }
-
+/*wrapper for achievements*/
 .achievements {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
   }
-  
+  /*achievement box */
   .achievement {
     background: #fff3cd;
     color: #856404;
@@ -461,16 +470,177 @@ button:disabled {
     font-weight: bold;
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     text-align: center;
-    animation: fadeInOut 5s ease forwards;
+    animation: fadeInOut 5s ease forwards; /* Citation: W3Schools. (n.d.). CSS3 Animations. Retrieved April, from https://www.w3schools.com/css/css3_animations.asp*/
+   
   }
-  
+  /*animatation for the pop up*/
   @keyframes fadeInOut {
     0% { opacity: 0; transform: translateY(-10px); }
     10% { opacity: 1; transform: translateY(0); }
     90% { opacity: 1; }
     100% { opacity: 0; transform: translateY(-10px); }
   }
+  /*Both used for @keyFrames
+    Citation: MDN Web Docs. (n.d.). @keyframes - CSS: Cascading Style Sheets.  Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes
+    Citation: Coyier, C. (2021, November 10). Keyframe Animation Syntax. CSS-Tricks. Retrieved from https://css-tricks.com/snippets/css/keyframe-animation-syntax/*/
+
+  /*Top navigation menu*/
+  .custom-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 40px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  /*ELTR logo*/
+  .nav-logo {
+
+        height: 60px;
+        object-fit: contain;
+      
+  }
+  /*The buttons on the right of the top menu*/
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  /*The text on the right of the top menu*/
+  .nav-right a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: #444;
+    transition: color 0.3s;
+  }
+  /*Login button*/
+  .nav-right a:hover {
+    color: #6b5b95;
+  }
   
-    #canvasWrapper {
-      display: none; /* Hidden initially */
-    }
+  .login-button {
+    background: #6b5b95;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-weight: bold;
+  }
+  .page-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+ /*window for the banner*/
+  .banner-modal {
+    text-align: center;
+    padding: 30px;
+  }
+   /*Winner banner*/
+  .winner-banner {
+    max-width: 100%;
+    width: 400px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+   /*Heading for the winning banner*/
+  #winnerModal h2 {
+    font-size: 28px;
+    color: #4CAF50;
+    margin-bottom: 10px;
+  }
+  
+  #winnerModal p {
+    font-size: 18px;
+    color: #333;
+  }
+  /*Button used for the winner window*/
+  .winner-link-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3); /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .winner-link-button:hover {
+    background: linear-gradient(135deg, #ff4a3d, #ff6a8b); /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    transform: scale(1.05);
+  }
+
+/*Grade selection window*/
+  #gradeModal .modal-content {
+    text-align: center;
+  }
+  
+  .grade-button {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #67d5b5, #6197d5); /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .grade-button:hover {
+    background: linear-gradient(135deg, #5ab0a0, #517fc4); /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    transform: scale(1.05);
+  }
+
+ /*Music window with info*/
+  .friends-label {
+    position: relative;
+    background: #fff9e6;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    width: 280px;        
+    font-family: 'Quicksand', sans-serif;
+    margin-top: 20px;
+    font-size: 14px;      
+}
+ /*Heading for the music window*/
+.friends-label h2 {
+    color: #6b5b95;
+    font-size: 20px;     /* Smaller heading */
+    margin-bottom: 15px;
+    text-align: center;
+}
+/*Text for the music window*/
+.friends-label p {
+    color: #555;
+    font-size: 14px;     /* Smaller paragraph text */
+    line-height: 1.4;
+    margin: 8px 0;
+}
+/*music window*/
+.close-friends {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+}
+/*music window hover*/
+.close-friends:hover {
+    color: #333;
+}

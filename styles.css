@@ -36,7 +36,7 @@ h1 {
     font-size: 30px; /* keep it at this size*/ 
     font-weight: 600; /* bold font */
     margin-bottom: 20px; /* keep at this. */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* original at 4px 4px 5px */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* original at 4px 4px 5px */ /* Citation: MDN Web Docs. (n.d.). box-shadow - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow*/
 }
 
 /*This is for the sentence right under the title*/
@@ -331,7 +331,7 @@ button:disabled {
   color: white;
   border: none;
   border-radius: 8px;
-  cursor: pointer; /* Citation: MDN Web Docs. (n.d.). cursor - CSS: Cascading Style Sheets. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/cursor*/
+  cursor: pointer;
   transition: background-color 0.3s ease;
   background: linear-gradient(135deg, #667eea, #764ba2); 
 }
@@ -367,7 +367,7 @@ button:disabled {
     color: white;
     border: none;
     border-radius: 12px;
-    cursor: pointer;  /* Citation: MDN Web Docs. (n.d.). cursor - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/cursor*/
+    cursor: pointer;  
     transition: background-color 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     margin-left: 10px;

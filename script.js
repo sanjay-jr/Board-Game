@@ -2190,7 +2190,7 @@ function generateRandomPositions(boardSize, maxShortcutLength = 5) {  /* Citatio
     // orange trap should not appear in the last tile which is 48
     orangeTrap = Math.min(orangeTrap, boardSize - 2);
     window.orangeTrapPosition = orangeTrap; // Store orange trap position /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_window.asp*/
-
+    //orange tile
     while (Object.keys(shortcuts).length < numberOfShortcuts) {
         let start = Math.floor(Math.random() * (boardSize / 2)); // Shortcuts start in first half
         let end = Math.min(start + Math.floor(Math.random() * maxShortcutLength) + 5, boardSize - 1);
@@ -2199,6 +2199,7 @@ function generateRandomPositions(boardSize, maxShortcutLength = 5) {  /* Citatio
             usedPositions.add(start).add(end);
         }
     }
+  //yellow tile
     while (Object.keys(traps).length < numberOfTraps) {
         let trap = Math.floor(Math.random() * (boardSize - 1));
        let destination = Math.max(trap - 2, 0); // Push back 2 tiles or to start
@@ -2214,7 +2215,7 @@ if (trap !== destination && !usedPositions.has(trap) && trap !== orangeTrap && d
 /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_functions.asp*/
 /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_loop_while.asp*/
 
-// Create the board
+// Creation of the board
 function createBoard() {
   boardElement.innerHTML = ""; // Prevent board duplication
   let rowCount = 0;
@@ -2237,6 +2238,7 @@ function createBoard() {
     const isOrangeTrap = i === window.orangeTrapPosition;
 
 // Only assign a random color if it's not a special tile
+    //making the tiles different colors
     if (!isShortcut && !isTrap && !isOrangeTrap) {
     const colorIndex = Math.floor(Math.random() * 5) + 1;
     cell.classList.add(`color${colorIndex}`);
@@ -2245,7 +2247,7 @@ function createBoard() {
     cell.id = `cell-${i}`;
     cell.textContent = i + 1;
 
- 
+ //short cut tile
     if (window.shortcuts && window.shortcuts[i] !== undefined) {
         cell.classList.add('shortcut');
         // Create a span to show where the shortcut leads to
@@ -2266,7 +2268,7 @@ function createBoard() {
         bananaIcon.style.left = "5px";
         cell.appendChild(bananaIcon);
     }
-    //orange
+    //orange tile
     if (i === window.orangeTrapPosition) {
         cell.classList.add('orange-trap');
         
@@ -2355,13 +2357,17 @@ function weightedDiceRoll() {
 }
 
 /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_random.asp*/
+/*Citation: MDN Web Docs. (n.d.). Math.random() - JavaScript. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random*/
+
 
 //Player movement
 function movePlayer(dice) { /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_function_call.asp*/
   let newPosition;
+  //Player 1
   if (currentPlayer === 1) {
     newPosition = player1Position + dice;
     player1Position = Math.min(newPosition, boardSize - 1);
+    //If player lands on the shortcut tile
     if (window.shortcuts && window.shortcuts[player1Position] !== undefined) {
       player1Position = window.shortcuts[player1Position];
       unlockAchievement(`${player1Name} found a shortcut!`);
@@ -2383,6 +2389,7 @@ function movePlayer(dice) { /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrie
       currentPlayer = 2;
       turnElement.textContent = `${player2Name}'s Turn`;
     }
+    //Player 2
   } else {
     newPosition = player2Position + dice;
     player2Position = Math.min(newPosition, boardSize - 1);

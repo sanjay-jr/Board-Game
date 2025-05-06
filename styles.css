@@ -23,7 +23,6 @@ body {
 }
 /* game-container    Citation: MDN Web Docs. (n.d.). Box model - Boxmodel. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model*/
 /* 'transition:' Citation: W3Schools. (n.d.). CSS3 Transitions. Retrieved april 2025, from https://www.w3schools.com/css/css3_transitions.asp*/
-/* max-width  Citation: W3Schools. (n.d.). CSS max-width Property. Retrieved May 2025, from https://www.w3schools.com/cssref/pr_dim_max-width.php*/
 
 
 .game-container:hover {
@@ -39,7 +38,6 @@ h1 {
     margin-bottom: 20px; /* keep at this. */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* original at 4px 4px 5px */
 }
-/* h1   Citiation: Mozilla Developer Network (MDN). (n.d.). Values and units  Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units*/
 
 /*This is for the sentence right under the title*/
 .game-intro {
@@ -125,23 +123,23 @@ h1 {
 }
 /*Colors of the other tiles*/
 .cell.color1 {
-    background: linear-gradient(135deg, #3443ec, #c2e9fb); /* blue */ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    background: linear-gradient(135deg, #3443ec, #c2e9fb); /* blue */  
 }
 
 .cell.color2 {
-    background: linear-gradient(135deg, #e384c8, #fc3dc3); /* pink*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    background: linear-gradient(135deg, #e384c8, #fc3dc3); /* pink*/
 }
 
 .cell.color3 {
-    background: linear-gradient(135deg, #d4fc79, #20cb37); /* green */ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    background: linear-gradient(135deg, #d4fc79, #20cb37); /* green */ 
 }
 
 .cell.color4 {
-    background: linear-gradient(135deg, #e83232, #d32e29); /* red */ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    background: linear-gradient(135deg, #e83232, #d32e29); /* red */ 
 }
 
 .cell.color5 {
-    background: linear-gradient(135deg, #ad6af0, #6b37e5); /* purple*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    background: linear-gradient(135deg, #ad6af0, #6b37e5); /* purple*/ 
 }
 
 /*Player 1*/
@@ -150,7 +148,7 @@ h1 {
     height: 30px;
     border-radius: 50%;
     background: #ff6f61; /*color of player 1*/
-    box-shadow: 0 0 10px rgba(255, 111, 97, 0.7); /* Citation: MDN Web Docs. (n.d.). box-shadow - CSS: Cascading Style Sheets. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow*/
+    box-shadow: 0 0 10px rgba(255, 111, 97, 0.7); 
     display: flex;
     justify-content: center; /*fixes the issue of it not centering horizontally */
     align-items: center;
@@ -161,7 +159,7 @@ h1 {
 /*Player 2*/
 .player2 {
     background: #6b5b95; /*color of player 2*/
-    box-shadow: 0 0 10px rgba(107, 91, 149, 0.7); /* Citation: MDN Web Docs. (n.d.). box-shadow - CSS: Cascading Style Sheets. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow*/
+    box-shadow: 0 0 10px rgba(107, 91, 149, 0.7); 
 }
 /*the charact image*/
 .player img {
@@ -178,7 +176,7 @@ button {
     padding: 15px 30px;
     font-size: 20px;
     font-weight: bold;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);  /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
     color: white; 
     border: none;
     border-radius: 12px;
@@ -188,7 +186,7 @@ button {
 }
 /* hovering over the buttons*/
 button:hover {
-    background: linear-gradient(135deg, #ff4a3d, #ff6a8b); /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    background: linear-gradient(135deg, #ff4a3d, #ff6a8b); 
     transform: scale(1.05); /*needs to be looked at */ /* Citation: MDN Web Docs. (n.d.). scale() - CSS: Cascading Style Sheets. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale*/
     box-shadow: 0 5px 12px rgba(255, 94, 125, 0.7);
 }
@@ -335,20 +333,20 @@ button:disabled {
   border-radius: 8px;
   cursor: pointer; /* Citation: MDN Web Docs. (n.d.). cursor - CSS: Cascading Style Sheets. Retrieved March 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/cursor*/
   transition: background-color 0.3s ease;
-  background: linear-gradient(135deg, #667eea, #764ba2); /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+  background: linear-gradient(135deg, #667eea, #764ba2); 
 }
 /*colors of buttons when answered*/
 .answer-button:hover {
-  background: linear-gradient(135deg, #4c6698, #633a82); /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+  background: linear-gradient(135deg, #4c6698, #633a82); 
 }
 
 .answer-button.correct {
-    background: linear-gradient(135deg, #4CAF50, #66BB6A); /* Green shades for correct answer */ /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    background: linear-gradient(135deg, #4CAF50, #66BB6A); 
     color: white;
 }
 
 .answer-button.incorrect {
-    background: linear-gradient(135deg, #F44336, #E57373); /* Red shades for incorrect answer */ /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    background: linear-gradient(135deg, #F44336, #E57373); 
     color: white;
 }
 /*Message when answering the question*/
@@ -391,7 +389,7 @@ button:disabled {
 }
 /*Shortcut circles in the how-to-play window*/
 .shortcut-indicator {
-    background: linear-gradient(135deg, #a8edea, #fed6e3); /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    background: linear-gradient(135deg, #a8edea, #fed6e3); 
     border: 2px dashed #888;
     font-size: 1em;
     width: 24px;            
@@ -567,7 +565,7 @@ button:disabled {
     font-size: 18px;
     font-weight: bold;
     color: white;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3); /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
     text-decoration: none;
     border-radius: 10px;
     transition: all 0.3s ease;
@@ -575,7 +573,7 @@ button:disabled {
   }
   
   .winner-link-button:hover {
-    background: linear-gradient(135deg, #ff4a3d, #ff6a8b); /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    background: linear-gradient(135deg, #ff4a3d, #ff6a8b); 
     transform: scale(1.05);
   }
 
@@ -591,7 +589,7 @@ button:disabled {
     padding: 12px 20px;
     font-size: 18px;
     font-weight: bold;
-    background: linear-gradient(135deg, #67d5b5, #6197d5); /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    background: linear-gradient(135deg, #67d5b5, #6197d5); 
     color: white;
     border: none;
     border-radius: 10px;
@@ -600,7 +598,7 @@ button:disabled {
   }
   
   .grade-button:hover {
-    background: linear-gradient(135deg, #5ab0a0, #517fc4); /*color of buttons*/ /* Citation: MDN Web Docs. (n.d.). linear-gradient() - CSS: Cascading Style Sheets. Retrieved april 2025, from https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient*/
+    background: linear-gradient(135deg, #5ab0a0, #517fc4); 
     transform: scale(1.05);
   }
 

@@ -208,7 +208,6 @@ const triviaQuestionsKindergarten = [
 
     // Add more Kindergarten questions here...
   ];
-  /* Citation: MDN Web Docs. (n.d.). Object basics - Learn web development. Retrieved April 2025, from https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics*/
 
   const triviaQuestionsGrade1 = [
     
@@ -312,7 +311,6 @@ const triviaQuestionsKindergarten = [
     // Add more 1st Grade questions here...
   ];
   
-  /* Citation: MDN Web Docs. (n.d.). Object basics - Learn web development. Retrieved April 2025, from https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics*/
   const triviaQuestionsGrade2 = [
    // Adam Apple
 
@@ -1154,7 +1152,6 @@ const triviaQuestionsKindergarten = [
 }
 
 ];
-  /* Citation: MDN Web Docs. (n.d.). Object basics - Learn web development. Retrieved April 2025, from https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics*/
 
   const triviaQuestionsGrade2to4 = [
 
@@ -2043,7 +2040,6 @@ const triviaQuestionsKindergarten = [
    
     // Add more 3nd–4th Grade questions here...
   ];
-    /* Citation: MDN Web Docs. (n.d.). Object basics - Learn web development. Retrieved April 2025, from https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics*/
 
 
 // Function to populate trivia modal with a random question

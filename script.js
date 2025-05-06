@@ -1,3 +1,8 @@
+/* Citation for const: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_const.asp*/
+/* Citation for function: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_functions.asp*/
+/* Citation for let: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_let.asp*/
+/* Citation for document: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_htmldom_document.asp*/
+
 // Game variables
 const boardSize = 48; // Double the board size
 const cellsPerRow = 8; // Increased cells per row
@@ -16,6 +21,7 @@ const winnerMessage = document.getElementById("winnerMessage");
 const backgroundMusic = document.getElementById('backgroundMusic')
 const diceRollSound = new Audio('/wp-content/Rainbow/sound1.wav');
 const winSound = new Audio('/wp-content/Rainbow/win-sound.wav'); 
+
 // Grade Modal Elements
 const gradeModal = document.getElementById("gradeModal");
 const gradeButtons = document.querySelectorAll(".grade-button");
@@ -42,6 +48,7 @@ const achievements = [];
     }
 }
 
+
 //Renaming the players
 // Rename Modal Elements
 const renameModal = document.getElementById("renameModal");
@@ -51,8 +58,6 @@ const saveNamesButton = document.getElementById("saveNames");
 
 let player1Name = "Player 1";
 let player2Name = "Player 2";
-
-
 
 
 // How to Play Modal Elements
@@ -75,8 +80,6 @@ const renameCloseBtn = renameModal.querySelector(".close");
 renameCloseBtn.addEventListener("click", () => {
     renameModal.style.display = "none";
 });
-
-
 
 
 // Close the modal if the user clicks outside of it
@@ -111,6 +114,7 @@ function updateScoreDisplay() {
     document.getElementById('player1Score').textContent = `Score: ${player1Score}`;
     document.getElementById('player2Score').textContent = `Score: ${player2Score}`;
 }
+
 
 // Function to update player name displays in scores
 function updatePlayerNameDisplay() {
@@ -313,6 +317,7 @@ const triviaQuestionsKindergarten = [
   ];
   
   /* Citation: MDN Web Docs. (n.d.). Object basics - Learn web development. Retrieved April 2025, from https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics*/
+
   const triviaQuestionsGrade2 = [
    // Adam Apple
 
@@ -2047,7 +2052,7 @@ const triviaQuestionsKindergarten = [
 
 
 // Function to populate trivia modal with a random question
-function loadTriviaQuestion() {
+function loadTriviaQuestion() { /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_function_call.asp*/
     const randomIndex = Math.floor(Math.random() * triviaQuestions.length);
     const questionData = triviaQuestions[randomIndex];
   
@@ -2065,6 +2070,9 @@ function loadTriviaQuestion() {
       button.classList.remove('correct', 'incorrect');
     });
   }
+
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_random.asp*/
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_functions.asp*/
 
 // Function to handle answer selection
 answerButtons.forEach(button => {
@@ -2103,8 +2111,11 @@ answerButtons.forEach(button => {
     });
 });
 
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_functions.asp*/
+
+
 // Function to show trivia modal
-function showTriviaModal() {
+function showTriviaModal() { /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_function_call.asp*/
     loadTriviaQuestion();
     triviaModal.style.display = "block";
 }
@@ -2116,7 +2127,7 @@ triviaCloseBtn.addEventListener("click", () => {
 });
 
 // Open character selection modals
-function openCharacterModals() {
+function openCharacterModals() { /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_function_call.asp*/
     characterModal1.style.display = "block";
 }
 
@@ -2163,8 +2174,10 @@ document.getElementById("selectCharacter2").addEventListener("click", () => {
     }
 });
 
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_functions.asp*/
+
 // Function to generate random shortcuts and traps
-function generateRandomPositions(boardSize, maxShortcutLength = 5) {
+function generateRandomPositions(boardSize, maxShortcutLength = 5) {  /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_function_parameters.asp*/
     const numberOfShortcuts = 4;
     const numberOfTraps = 4;
     const shortcuts = {};
@@ -2176,7 +2189,7 @@ function generateRandomPositions(boardSize, maxShortcutLength = 5) {
     orangeTrap = minOrangeTrapPosition + Math.floor(Math.random() * (3 * cellsPerRow));
     // orange trap should not appear in the last tile which is 48
     orangeTrap = Math.min(orangeTrap, boardSize - 2);
-    window.orangeTrapPosition = orangeTrap; // Store orange trap position
+    window.orangeTrapPosition = orangeTrap; // Store orange trap position /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_window.asp*/
 
     while (Object.keys(shortcuts).length < numberOfShortcuts) {
         let start = Math.floor(Math.random() * (boardSize / 2)); // Shortcuts start in first half
@@ -2196,6 +2209,10 @@ if (trap !== destination && !usedPositions.has(trap) && trap !== orangeTrap && d
     }
     return { shortcuts, traps };
 }
+
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_random.asp*/
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_functions.asp*/
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_loop_while.asp*/
 
 // Create the board
 function createBoard() {
@@ -2261,15 +2278,17 @@ function createBoard() {
         orangeIcon.style.right = "5px";
         cell.appendChild(orangeIcon);
     }
-    
-
     boardElement.lastChild.appendChild(cell);
   }
   updatePlayers(); // Ensure players are displayed after board creation
 }
 
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_function_call.asp*/
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_random.asp*/
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_window.asp*/
+
 // Update player positions
-function updatePlayers() {
+function updatePlayers() { /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_function_call.asp*/
   document.querySelectorAll(".player").forEach((player) => player.remove());
 
   const player1Cell = document.getElementById(`cell-${player1Position}`);
@@ -2290,6 +2309,8 @@ function updatePlayers() {
       player2Cell.appendChild(player2);
   }
 }
+
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_function_call.asp*/
 
 // Roll the dice with animation
 let diceRoll = 0;
@@ -2333,8 +2354,10 @@ function weightedDiceRoll() {
     return 1;
 }
 
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_random.asp*/
+
 //Player movement
-function movePlayer(dice) {
+function movePlayer(dice) { /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_function_call.asp*/
   let newPosition;
   if (currentPlayer === 1) {
     newPosition = player1Position + dice;
@@ -2388,15 +2411,18 @@ function movePlayer(dice) {
   updatePlayers();
 }
 
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_functions.asp*/
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_window.asp*/
+
 // End game state (disable dice roll)
-function endGame() {
+function endGame() { /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_function_call.asp*/
     document.getElementById('rollDice').disabled = true;
     document.getElementById('rollDice').style.opacity = 0.5;
 }
 
 // Reset game
 document.getElementById('resetGame').addEventListener('click', resetGame);
-function resetGame() {
+function resetGame() { /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_function_call.asp*/
   player1Position = 0;
   player2Position = 0;
   currentPlayer = 1;
@@ -2411,8 +2437,6 @@ function resetGame() {
   player2Score = 0;
   updateScoreDisplay();
 }
-
-
 
 document.getElementById('startGame').addEventListener('click', () => {
     gradeModal.style.display = "block"; // Open the Grade Selection modal first
@@ -2450,6 +2474,8 @@ document.getElementById('startGame').addEventListener('click', () => {
     }
   });
 
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_functions.asp*/
+
 saveNamesButton.addEventListener("click", () => {
     player1Name = player1NameInput.value || "Player 1";
     player2Name = player2NameInput.value || "Player 2";
@@ -2459,9 +2485,9 @@ saveNamesButton.addEventListener("click", () => {
     openCharacterModals(); // Move to character selection after names
 });
 
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_functions.asp*/
 
-
-function startGame() {
+function startGame() { /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_function_call.asp*/
   createBoard();
   resetGame();
   const { shortcuts: newShortcuts, traps: newTraps } = generateRandomPositions(boardSize);
@@ -2472,9 +2498,11 @@ function startGame() {
   updatePlayerNameDisplay(); // Initial update of player names
   document.querySelectorAll('.player-score-side').forEach(el => el.style.display = 'block');
 }
+/* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_window.asp*/
+
 
 // Close the modal if the user clicks outside of it
-window.addEventListener("click", (event) => {
+window.addEventListener("click", (event) => { /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_window.asp*/
     if (event.target == renameModal) {
         renameModal.style.display = "none";
     }
@@ -2509,7 +2537,7 @@ closeWinnerModal.addEventListener("click", () => {
     winnerModal.style.display = "none";
   });
   
-  window.addEventListener("click", (event) => {
+  window.addEventListener("click", (event) => { /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_window.asp*/
     if (event.target === winnerModal) {
       winnerModal.style.display = "none";
     }
@@ -2523,7 +2551,7 @@ closeFriends.addEventListener("click", () => {
     friendsLabel.style.display = "none";
 });
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', () => { /* Citation: W3Schools. (n.d.). W3.CSS Modal. Retrieved March 2025, from https://www.w3schools.com/js/js_window.asp*/
   const closeFriends = document.getElementById("closeFriends");
   const friendsLabel = document.getElementById("friendsLabel");
 
